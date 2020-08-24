@@ -23,11 +23,11 @@ class AuthController extends Controller
      * @return [string] message
      */
     public function register(Request $request)
-    
+
 
     {
 
-        
+
         $request->validate([
             'name' => 'required|string',
             'branch' => 'required|string',
@@ -36,11 +36,11 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required|string'
         ]);
-        
+
         $user = new User([
 
-            'name' => $request->name, 
-            'branch_id' => $request->branch, 
+            'name' => $request->name,
+            'branch_id' => $request->branch,
             'username' => $request->username,
             'role' => $request->role,
             'password' => bcrypt($request->password)
@@ -52,7 +52,7 @@ class AuthController extends Controller
             'message' => 'Successfully created user!'
         ], 201);
         */
-       
+
         return redirect('/auth-login');
 
     }
@@ -74,12 +74,12 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-       
+
         $credentials = $request->only('username', 'password');
 
         if (!Auth::attempt($credentials)) {
             // Authentication not passed...
-            return Session::flash('message', 'This is a message!');         
+            return Session::flash('message', 'This is a message!');
         }
 
         $username=$request->username;
@@ -87,7 +87,7 @@ class AuthController extends Controller
         $role = DB::table('users')->where('username', $username)->value('role');
         $current_user = DB::table('users')->where('username', $username)->get();
 
-        
+
         $company_id = DB::table('users')->where('username', $username)->value('id');
         $branch_id = DB::table('users')->where('username', $username)->value('branch_id');
         $name = DB::table('users')->where('username', $username)->value('name');
@@ -101,17 +101,22 @@ class AuthController extends Controller
 
         $overall = DB::table('overalls')->latest()->first();
        // Overall::latest();
-        
+      $FbTotal=0;
+      $TikTotal=0;
+      $InstTotal=0;
+      $OthTotal=0;
+      if($overall != null){
         $FbTotal=$overall->facebook;
         $TikTotal=$overall->tiktok;
         $InstTotal=$overall->instagram;
         $OthTotal=$overall->other;
+      }
 
        // $overall01 = DB::table('overalls')->where('date','2020-*')->first();
 
         if($role=='user'){
             return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','date','omar'));
-        } 
+        }
         else{
 
             return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal'));
@@ -168,19 +173,19 @@ class AuthController extends Controller
 
         ]);
 
-       
+
         $company_id=$request->company_id;
         $branch_id=$request->branch_id;
 
         $survey = new Survey([
 
             'company_id' => $request->company_id,
-            'branch_id' => $request->branch_id,  
-            'facebook' => $request->fb,  
-            'instagram' => $request->ig,  
-            'tiktok' => $request->tik,  
+            'branch_id' => $request->branch_id,
+            'facebook' => $request->fb,
+            'instagram' => $request->ig,
+            'tiktok' => $request->tik,
             'other' => $request->oth
-            
+
         ]);
 
         $survey->save();
@@ -191,7 +196,7 @@ class AuthController extends Controller
         ////////////////////////////////////
 
 
-        
+
         $last_row = DB::table('surveys')->latest()->first();
         $time = $last_row->created_at;
         $datex = Carbon::parse($time);
@@ -207,7 +212,7 @@ class AuthController extends Controller
 
 
          /*
-            if the current date exist on the table 
+            if the current date exist on the table
             we take it -> extract the old values ->
             add the new values -> update the row
             */
@@ -215,7 +220,7 @@ class AuthController extends Controller
 
         if(!is_null($current_date_row)){
 
-           
+
             $facebook = $current_date_row->facebook;
             $instagram = $current_date_row->instagram;
             $tiktok = $current_date_row->tiktok;
@@ -254,17 +259,17 @@ class AuthController extends Controller
              /*
             if the current date dose not exist
              we may be two cases:
-                1-it is the first record at all 
+                1-it is the first record at all
                 2-it is the first record at this day
-            
 
-            if (1): 
-                we will git the values and add them to the table 
+
+            if (1):
+                we will git the values and add them to the table
             if (2):
-                we will get the previous day overall and set them as the initial 
+                we will get the previous day overall and set them as the initial
             */
         }else{
-            
+
 
 
             $last_row_overall = DB::table('overalls')->latest()->first();
@@ -277,41 +282,41 @@ class AuthController extends Controller
                 $instagram2 = $last_row->instagram;
                 $tiktok2 = $last_row->tiktok;
                 $other2 = $last_row->other;
-    
+
                 $facebook2=intval($facebook2);
                 $instagram2=intval($instagram2);
                 $tiktok2=intval($tiktok2);
                 $other2=intval($other2);
-    
 
-    
-    
-    
+
+
+
+
           $overall = new Overall([
-    
+
                 'date' => $date,
                 'facebook' => $facebook2,
                 'instagram' => $instagram2,
                 'tiktok' => $tiktok2,
                 'other' => $other2
-              
-                
+
+
             ]);
-    
+
             $overall->save();
-    
-                
+
+
           }
         else{
 
-        
-            
+
+
             $facebook = $last_row_overall->facebook;
             $instagram = $last_row_overall->instagram;
             $tiktok = $last_row_overall->tiktok;
             $other = $last_row_overall->other;
 
-      
+
             $facebook2 = $last_row->facebook;
             $instagram2 = $last_row->instagram;
             $tiktok2 = $last_row->tiktok;
@@ -330,30 +335,30 @@ class AuthController extends Controller
 
 
 
-       
+
             $overall = new Overall([
-    
+
                 'date' => $date,
                 'facebook' => $facebook2,
                 'instagram' => $instagram2,
                 'tiktok' => $tiktok2,
                 'other' => $other2
-              
-                
+
+
             ]);
-    
+
             $overall->save();
 
-            
-            
+
+
 
         }
-        
+
 
     }
         return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
 
-    
+
     }
 
 

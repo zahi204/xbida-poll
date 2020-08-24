@@ -62,7 +62,7 @@ label {
 
   @section('content')
     {{-- Dashboard Analytics Start --}}
-    
+
     <br><br><br>
 <center>
 
@@ -78,7 +78,7 @@ label {
 
 
 
-        
+
         <div class="col-6">
         <div class="card">
           <div class="card-header d-flex justify-content-between pb-0">
@@ -104,11 +104,16 @@ label {
                     <div class='col-3'>
                     <img class="" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="30" width="30" /> <br>
                     <span>
-                    <?php 
+                    <?php
 
                         $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                        $perc = ((int)$FbTotal/$total)*100;
-                        echo (int)$perc.'%'; 
+                        $perc = 0;
+                        if($total != 0){
+                          $perc = ((int)$FbTotal/$total)*100;
+                        }
+
+
+                        echo (int)$perc.'%';
 
                     ?>
                     </span>
@@ -119,14 +124,18 @@ label {
                     <div class='col-3'>
                     <img class="" src="{{asset('images/portrait/small/tik.png') }}" alt="avatar" height="30" width="30" /><br>
                     <span>
-                    <?php 
+                    <?php
 
                     $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = ((int)$TikTotal/$total)*100;
-                    echo (int)$perc.'%'; 
+                    $perc = 0;
+                    if($total != 0){
+                      $perc = ((int)$TikTotal/$total)*100;
+
+                    }
+                    echo (int)$perc.'%';
 
                     ?>
-                    
+
                     </span>
                     </div>
 
@@ -134,25 +143,33 @@ label {
 
                     <img class="" src="{{asset('images/portrait/small/inst.png') }}" alt="avatar" height="30" width="30" /><br>
                     <span>
-                    <?php 
+                    <?php
 
                     $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = ((int)$InstTotal/$total)*100;
-                    echo (int)$perc.'%'; 
+                    $perc = 0;
+                    if($total != 0){
+                      $perc = ((int)$InstTotal/$total)*100;
+                    }
+
+                    echo (int)$perc.'%';
 
                     ?>
 
-                    </span>   
+                    </span>
                 </div>
 
                     <div class='col-3'>
                     <img class="" src="{{asset('images/portrait/small/oth2.png') }}" alt="avatar" height="30" width="30" /><br>
                     <span>
-                    <?php 
+                    <?php
 
                     $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = ((int)$OthTotal/$total)*100;
-                    echo (int)$perc.'%'; 
+                    $perc = 0;
+                    if($total != 0){
+                      $perc = ((int)$OthTotal/$total)*100;
+                    }
+
+                    echo (int)$perc.'%';
 
                     ?>
                     </span>
@@ -161,7 +178,7 @@ label {
 
 
 
-                    
+
 
                     </div>
 
@@ -177,7 +194,7 @@ label {
 
 
 
-      
+
   <div class="col-6">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -204,7 +221,7 @@ label {
                         <span>{{$FbTotal}}</span>
 
                         </div>
-                        
+
 
                         <div class='col-3'>
                         <img class="" src="{{asset('images/portrait/small/tik.png') }}" alt="avatar" height="30" width="30" /><br>
@@ -213,7 +230,7 @@ label {
                         </div>
 
                         <div class='col-3'>
-                        
+
                         <img class="" src="{{asset('images/portrait/small/inst.png') }}" alt="avatar" height="30" width="30" /><br>
                         <span>{{$InstTotal}}</span>
 
@@ -230,7 +247,7 @@ label {
 
 
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -243,7 +260,7 @@ label {
 
 
 
-    
+
       </div>
 
     </div>
@@ -282,7 +299,7 @@ label {
         <div id="navigation">
 
 
-        
+
       <div class="col-12">
             <div class="card" style="">
                 <div class="card-content collapse show" aria-expanded="true">
@@ -291,7 +308,7 @@ label {
                                 <span>בחר תאיך התחלה וסיום</span>
                                 <br>
                                 <br>
-                              
+
 
                                 <div class="form-label-group">
                                 <label for="inputName">מיום</label>מיום:
@@ -303,7 +320,7 @@ label {
                                 </div>
                                 <button type="submit" class="btn btn-primary float-center btn-inline mb-50">Refresh</a>
                             </form>
-                           
+
                     </div>
                 </div>
             </div>
@@ -329,9 +346,9 @@ label {
           <div class="card-content">
               <div class="card-body">
                   <div class="row pb-50">
-                     
+
                       <div class="col-lg-12 col-12 d-flex justify-content-between flex-column text-right order-lg-2 order-1">
-                         
+
                           <div id="avg-session-chart"></div>
                       </div>
                   </div>
@@ -381,7 +398,7 @@ label {
                               style="width:40%"></div>
                           </div>
                       </div>
-                    
+
                      <br><br><br>
 
                       <div class="col-4">
@@ -397,7 +414,7 @@ label {
                       </div>
 
 
-                      
+
                   </div>
               </div>
           </div>
@@ -416,9 +433,9 @@ label {
 
 
 
-    </div>           
     </div>
-         
+    </div>
+
 </div>
 </div>
 

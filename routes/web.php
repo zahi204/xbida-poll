@@ -24,45 +24,45 @@ Route::get('/dash-analysis', 'DashboardController@dashboardAnalysis');
 Route::get('/thanks-page', 'DashboardController@thanks');
 
 // Route Apps
-Route::get('/app-email', 'EmailAppController@emailApp');
-Route::get('/app-chat', 'ChatAppController@chatApp');
-Route::get('/app-todo', 'ToDoAppController@todoApp');
-Route::get('/app-calender', 'CalenderAppController@calenderApp');
-Route::get('/app-ecommerce-shop', 'EcommerceAppController@ecommerce_shop');
-Route::get('/app-ecommerce-details', 'EcommerceAppController@ecommerce_details');
-Route::get('/app-ecommerce-wishlist', 'EcommerceAppController@ecommerce_wishlist');
-Route::get('/app-ecommerce-checkout', 'EcommerceAppController@ecommerce_checkout');
+//Route::get('/app-email', 'EmailAppController@emailApp');
+//Route::get('/app-chat', 'ChatAppController@chatApp');
+//Route::get('/app-todo', 'ToDoAppController@todoApp');
+//Route::get('/app-calender', 'CalenderAppController@calenderApp');
+//Route::get('/app-ecommerce-shop', 'EcommerceAppController@ecommerce_shop');
+//Route::get('/app-ecommerce-details', 'EcommerceAppController@ecommerce_details');
+//Route::get('/app-ecommerce-wishlist', 'EcommerceAppController@ecommerce_wishlist');
+//Route::get('/app-ecommerce-checkout', 'EcommerceAppController@ecommerce_checkout');
 
 // Users Pages
-Route::get('/app-user-list', 'UserPagesController@user_list');
-Route::get('/app-user-view', 'UserPagesController@user_view');
-Route::get('/app-user-edit', 'UserPagesController@user_edit');
+//Route::get('/app-user-list', 'UserPagesController@user_list');
+//Route::get('/app-user-view', 'UserPagesController@user_view');
+//Route::get('/app-user-edit', 'UserPagesController@user_edit');
 
 // Route Data List
-Route::resource('/data-list-view','DataListController');
-Route::resource('/data-thumb-view', 'DataThumbController');
+//Route::resource('/data-list-view','DataListController');
+//Route::resource('/data-thumb-view', 'DataThumbController');
 
 
 // Route Content
-Route::get('/content-grid', 'ContentController@grid');
-Route::get('/content-typography', 'ContentController@typography');
-Route::get('/content-text-utilities', 'ContentController@text_utilities');
-Route::get('/content-syntax-highlighter', 'ContentController@syntax_highlighter');
-Route::get('/content-helper-classes', 'ContentController@helper_classes');
+//Route::get('/content-grid', 'ContentController@grid');
+//Route::get('/content-typography', 'ContentController@typography');
+//Route::get('/content-text-utilities', 'ContentController@text_utilities');
+//Route::get('/content-syntax-highlighter', 'ContentController@syntax_highlighter');
+//Route::get('/content-helper-classes', 'ContentController@helper_classes');
 
 // Route Color
-Route::get('/colors', 'ContentController@colors');
-
-// Route Icons
-Route::get('/icons-feather', 'IconsController@icons_feather');
-Route::get('/icons-font-awesome', 'IconsController@icons_font_awesome');
-
-// Route Cards
-Route::get('/card-basic', 'CardsController@card_basic');
-Route::get('/card-advance', 'CardsController@card_advance');
-Route::get('/card-statistics', 'CardsController@card_statistics');
-Route::get('/card-analytics', 'CardsController@card_analytics');
-Route::get('/card-actions', 'CardsController@card_actions');
+//Route::get('/colors', 'ContentController@colors');
+//
+//// Route Icons
+//Route::get('/icons-feather', 'IconsController@icons_feather');
+//Route::get('/icons-font-awesome', 'IconsController@icons_font_awesome');
+//
+//// Route Cards
+//Route::get('/card-basic', 'CardsController@card_basic');
+//Route::get('/card-advance', 'CardsController@card_advance');
+//Route::get('/card-statistics', 'CardsController@card_statistics');
+//Route::get('/card-analytics', 'CardsController@card_analytics');
+//Route::get('/card-actions', 'CardsController@card_actions');
 
 // Route Components
 Route::get('/component-alert', 'ComponentsController@alert');
