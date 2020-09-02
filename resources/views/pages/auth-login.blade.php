@@ -63,16 +63,16 @@
                               </form>
                           </div>
                       </div>
-                       
-                      <div class="login-footer">
-                        <div class="divider">
+
+                      <div class="login-footer" >
+                        <div class="divider" style="display: none">
                           <div class="divider-text">OR</div>
                         </div>
-                        <div class="footer-btn d-inline">
-                            <a href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>
-                            <a href="#" class="btn btn-twitter white"><span class="fa fa-twitter"></span></a>
-                            <a href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
-                            <a href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
+                        <div class="footer-btn d-inline" style="display: none">
+                            <a style="display: none" href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>
+                            <a style="display: none" href="#" class="btn btn-twitter white"><span class="fa fa-twitter"></span></a>
+                            <a style="display: none" href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
+                            <a style="display: none" href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
                         </div>
                       </div>
                   </div>
