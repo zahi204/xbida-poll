@@ -79,7 +79,8 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials)) {
             // Authentication not passed...
-            return Session::flash('message', 'This is a message!');
+            return redirect('/auth-login');
+            
         }
 
         $username=$request->username;

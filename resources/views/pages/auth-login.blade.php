@@ -11,10 +11,10 @@
 @section('content')
 <section class="row flexbox-container">
   <div class="col-xl-8 col-11 d-flex justify-content-center">
-      <div class="card bg-authentication rounded-0 mb-0">
+      <div style="background-color:#f7f7f7;";class="card  rounded-0 mb-0">
           <div class="row m-0">
               <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                  <img src="{{ asset('images/pages/login.png') }}" alt="branding logo">
+                  <img src="{{ asset('images/portrait/small/loginlogo.png') }}" alt="branding logo">
               </div>
               <div class="col-lg-6 col-12 p-0">
                   <div class="card rounded-0 mb-0 px-2">
@@ -52,28 +52,27 @@
                                                   <i class="vs-icon feather icon-check"></i>
                                                 </span>
                                               </span>
+                                           
                                               <span class="">Remember me</span>
+                                              
                                             </div>
                                           </fieldset>
                                       </div>
+                                      <!--
                                       <div class="text-right"><a href="auth-forgot-password" class="card-link">Forgot Password?</a></div>
-                                  </div>
-                                  <a href="auth-register" class="btn btn-outline-primary float-left btn-inline">Register</a>
+                                  -->
                                   <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
+
+                                  </div>
+                                  <!--
+                                  <a href="auth-register" class="btn btn-outline-primary float-left btn-inline">Register</a>
+                                  -->
                               </form>
                           </div>
                       </div>
-
-                      <div class="login-footer" >
-                        <div class="divider" style="display: none">
-                          <div class="divider-text">OR</div>
-                        </div>
-                        <div class="footer-btn d-inline" style="display: none">
-                            <a style="display: none" href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>
-                            <a style="display: none" href="#" class="btn btn-twitter white"><span class="fa fa-twitter"></span></a>
-                            <a style="display: none" href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
-                            <a style="display: none" href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
-                        </div>
+                       
+                      <div class="login-footer">
+                      <br>
                       </div>
                   </div>
               </div>
