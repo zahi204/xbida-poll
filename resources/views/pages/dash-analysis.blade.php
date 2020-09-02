@@ -62,7 +62,7 @@ label {
 
   @section('content')
     {{-- Dashboard Analytics Start --}}
-
+    
     <br><br><br>
 <center>
 
@@ -73,130 +73,110 @@ label {
 <div class="container">
 <div class="row">
 <div class="col-xs-8 col-sm-8 col-8">
-        <div id="text1">
-        <div class="row">
 
 
-
-
-        <div class="col-6">
+<div id="text1">
         <div class="card">
-          <div class="card-header d-flex justify-content-between pb-0">
-              <h4 class="card-title">ערוץ מוביל</h4>
-          </div>
+              <div class="card-header d-flex justify-content-between align-items-end ">
+                  <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
+              </div>
+              <div class="card-content">
 
-          <div class="card-content">
-              <div class="card-body pt-1">
+                  <div class="card-body pb-0">
 
-              <br>
+                      <div class="d-flex justify-content-start"></div>
 
-                    <div id="customer-chart"></div>
-
-
-                    <div class="chart-info d-flex justify-content-between mb-1">  </div>
-
-
-
-
-                    <div class='row' style='margin-top:10px; margin-bottom:10px;';>
-
-
-                    <div class='col-3'>
-                    <img class="" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="30" width="30" /> <br>
-                    <span>
-                    <?php
-
-                        $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                        $perc = 0;
-                        if($total != 0){
-                          $perc = ((int)$FbTotal/$total)*100;
-                        }
-
-
-                        echo (int)$perc.'%';
-
-                    ?>
-                    </span>
-
-                    </div>
-
-
-                    <div class='col-3'>
-                    <img class="" src="{{asset('images/portrait/small/tik.png') }}" alt="avatar" height="30" width="30" /><br>
-                    <span>
-                    <?php
-
-                    $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = 0;
-                    if($total != 0){
-                      $perc = ((int)$TikTotal/$total)*100;
-
-                    }
-                    echo (int)$perc.'%';
-
-                    ?>
-
-                    </span>
-                    </div>
-
-                    <div class='col-3'>
-
-                    <img class="" src="{{asset('images/portrait/small/inst.png') }}" alt="avatar" height="30" width="30" /><br>
-                    <span>
-                    <?php
-
-                    $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = 0;
-                    if($total != 0){
-                      $perc = ((int)$InstTotal/$total)*100;
-                    }
-
-                    echo (int)$perc.'%';
-
-                    ?>
-
-                    </span>
-                </div>
-
-                    <div class='col-3'>
-                    <img class="" src="{{asset('images/portrait/small/oth2.png') }}" alt="avatar" height="30" width="30" /><br>
-                    <span>
-                    <?php
-
-                    $total= (int)$FbTotal + (int)$TikTotal + (int)$InstTotal + (int)$OthTotal;
-                    $perc = 0;
-                    if($total != 0){
-                      $perc = ((int)$OthTotal/$total)*100;
-                    }
-
-                    echo (int)$perc.'%';
-
-                    ?>
-                    </span>
-                    </div>
+                      <div id="revenue-chart"></div>
+                  </div>
+              </div>
+         </div>
+</div>
 
 
 
 
 
+        <div id="text2">
+        <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-end ">
+                  <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
+              </div>
+              <div class="card-content">
 
-                    </div>
+                  <div class="card-body pb-0">
 
+                      <div class="d-flex justify-content-start"></div>
 
-
-
+                      <div id="sales-line-chart"></div>
+                  </div>
               </div>
           </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+<div class="col-4">
+        <div id="navigation">
+
+
+        
+      <div class="col-12">
+            <div class="card" style="">
+                <div class="card-content collapse show" aria-expanded="true">
+                    <div class="card-body" >
+                            <form action="" method="post">
+                                <span>בחר תאיך התחלה וסיום</span>
+                                <br>
+                                <br>
+                              
+
+                                <div class="form-label-group">
+                                <label for="inputName">מיום</label>מיום:
+                                    <input type='date'  value="2020-08-22" class='form-control'>
+                                </div>
+                                <div class="form-label-group">
+                                <label for="inputBranch">עד יום</label>עד יום:
+                                    <input type='date'  class='form-control'>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-center btn-inline mb-50">Refresh</a>
+                            </form>
+                           
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
 
 
 
 
 
-  <div class="col-6">
-            <div class="card">
+
+
+
+
+
+
+
+
+
+
+        <div class="col-12">
+       
+
+        <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title">מספר משיבים</h4>
                 </div>
@@ -221,7 +201,7 @@ label {
                         <span>{{$FbTotal}}</span>
 
                         </div>
-
+                        
 
                         <div class='col-3'>
                         <img class="" src="{{asset('images/portrait/small/tik.png') }}" alt="avatar" height="30" width="30" /><br>
@@ -230,7 +210,7 @@ label {
                         </div>
 
                         <div class='col-3'>
-
+                        
                         <img class="" src="{{asset('images/portrait/small/inst.png') }}" alt="avatar" height="30" width="30" /><br>
                         <span>{{$InstTotal}}</span>
 
@@ -247,178 +227,13 @@ label {
 
 
                     </div>
-
+                   
                 </div>
             </div>
-        </div>
 
 
 
 
-
-
-
-
-
-
-      </div>
-
-    </div>
-
-
-
-
-
-
-        <div id="text2">
-        <div class="card">
-              <div class="card-header d-flex justify-content-between align-items-end ">
-                  <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
-              </div>
-              <div class="card-content">
-
-                  <div class="card-body pb-0">
-
-                      <div class="d-flex justify-content-start"></div>
-
-                      <div id="revenue-chart"></div>
-                  </div>
-              </div>
-          </div>
-
-
-    </div>
-
-
-
-
-    </div>
-
-
-<div class="col-4">
-        <div id="navigation">
-
-
-
-      <div class="col-12">
-            <div class="card" style="">
-                <div class="card-content collapse show" aria-expanded="true">
-                    <div class="card-body" >
-                            <form action="" method="post">
-                                <span>בחר תאיך התחלה וסיום</span>
-                                <br>
-                                <br>
-
-
-                                <div class="form-label-group">
-                                <label for="inputName">מיום</label>מיום:
-                                    <input type='date'  value="2020-08-22" class='form-control'>
-                                </div>
-                                <div class="form-label-group">
-                                <label for="inputBranch">עד יום</label>עד יום:
-                                    <input type='date'  class='form-control'>
-                                </div>
-                                <button type="submit" class="btn btn-primary float-center btn-inline mb-50">Refresh</a>
-                            </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="col-12">
-        <div class="card">
-          <div class="card-content">
-              <div class="card-body">
-                  <div class="row pb-50">
-
-                      <div class="col-lg-12 col-12 d-flex justify-content-between flex-column text-right order-lg-2 order-1">
-
-                          <div id="avg-session-chart"></div>
-                      </div>
-                  </div>
-                  <hr/>
-                  <div class="row avg-sessions pt-50">
-                      <div class="col-4">
-                      <img class="round" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="50" width="50" />
-                      </div>
-                      <div class="col-8">
-                          <small>300</small>
-                          <div class="progress progress-bar-primary mt-25">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100"
-                              style="width:70%"></div>
-                          </div>
-                      </div>
-
-                      <br><br><br>
-
-
-
-                      <div class="col-4">
-                      <img class="round" src="{{asset('images/portrait/small/tik.png') }}" alt="avatar" height="50" width="50" />
-
-                      </div>
-                      <div class="col-8">
-                          <small>150</small>
-                          <div class="progress progress-bar-danger mt-25">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100"
-                              style="width:50%"></div>
-                          </div>
-                      </div>
-
-                      <br> <br> <br>
-
-
-
-
-
-                    <div class="col-4">
-                      <img class="round" src="{{asset('images/portrait/small/inst.png') }}" alt="avatar" height="50" width="50" />
-
-                      </div>
-                      <div class="col-8">
-                          <small>150</small>
-                          <div class="progress progress-bar-success mt-25">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100"
-                              style="width:40%"></div>
-                          </div>
-                      </div>
-
-                     <br><br><br>
-
-                      <div class="col-4">
-                      <img class="round" src="{{asset('images/portrait/small/oth2.png') }}" alt="avatar" height="50" width="50" />
-
-                      </div>
-                      <div class="col-8">
-                          <small>100</small>
-                          <div class="progress progress-bar-primary mt-25">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100"
-                              style="width:20%"></div>
-                          </div>
-                      </div>
-
-
-
-                  </div>
-              </div>
-          </div>
-        </div>
       </div>
 
 
@@ -433,9 +248,9 @@ label {
 
 
 
+    </div>           
     </div>
-    </div>
-
+         
 </div>
 </div>
 
@@ -551,9 +366,7 @@ var $yel = '#FFFF00';
                         fontSize: '18px',
                     },
                     value: {
-                        formatter: function(val) {
-                            return val
-                        },
+                        
                         fontSize: '16px',
                     },
                     total: {
@@ -568,7 +381,7 @@ var $yel = '#FFFF00';
                 }
             }
         },
-        series: [btnFaceVal,btnInstaVal,btnTikVal,btnOthVal],
+        series: [~~fbperc,~~tikperc,~~instperc,~~othperc],
         labels: ['Facebook' , 'Tiktok', 'Instagram','Other'],
 
     }
