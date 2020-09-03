@@ -70,8 +70,8 @@ label {
 
 
 
-<div class="container">
-<div class="row">
+<div class="container align-items-center ">
+<div class="row" style="height:auto; width:900px;margin-left:-110px;margin-top:-50px;";>
 <div class="col-xs-8 col-sm-8 col-8">
 
 
