@@ -43,7 +43,7 @@
 <center>
 
 
-<img class="round" src="{{asset('images/portrait/small/logomet.png') }}" alt="avatar" height="70" width="180" />
+<img class="round" src="{{asset('images/portrait/small/logomet.PNG') }}" alt="avatar" height="70" width="180" />
 
 
 <!--*
@@ -64,7 +64,7 @@
     </center>
 -->
 <br>
-<img class="" src="{{asset('images/portrait/small/titleblack.png') }}" height="170" width="" />
+<img class="" src="{{asset('images/portrait/small/titleblack.PNG') }}" height="170" width="" />
 <br>
 <br>
 
