@@ -64,7 +64,7 @@
     </center>
 -->
 <br>
-<div style="margin-top: 2px;">
+<div style="margin-top: 25px;">
  <img class="" src="{{asset('images/portrait/small/titleblack.PNG') }}" height="170" width="" />
 </div>
 
