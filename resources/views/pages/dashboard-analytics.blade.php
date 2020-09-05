@@ -39,7 +39,7 @@
 
   @section('content')
     {{-- Dashboard Analytics Start --}}
-    
+
 <center>
 
 
@@ -52,25 +52,28 @@
               <div class="card-body" style="padding:1rem">
               <h1 style="font-size:4rem; text-align: right;";><u>עזור לנו להתמקד </u></h1>
 
-   
+
 
 
     <h2 style="font-size:3rem;text-align: center;";>תודה שקנית אצלנו <br> חשוב לנו לדעת איפה ראית אותנו ؟؟</h2>
-    
+
         </div>
           </div>
       </div>
-   
+
     </center>
 -->
 <br>
-<img class="" src="{{asset('images/portrait/small/titleblack.PNG') }}" height="170" width="" />
+<div style="margin-top: 2px;">
+ <img class="" src="{{asset('images/portrait/small/titleblack.PNG') }}" height="170" width="" />
+</div>
+
 <br>
 <br>
 
 
 
-<div class="container" style="width:700px;"; >  
+<div class="container" style="width:700px;"; >
 
 
 
@@ -78,8 +81,8 @@
 
 
 <div class="row" style="";>
-  
-  
+
+
   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content  show" aria-expanded="true">
@@ -91,12 +94,12 @@
             </div>
         </div>
   </div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
         <div class="card" style="border-width: 0px;border-color: #706f6f;border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
@@ -108,9 +111,9 @@
             </div>
         </div>
   </div>
-  
-  
-  
+
+
+
   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
@@ -122,10 +125,10 @@
             </div>
         </div>
   </div>
-  
-  
-  
-  
+
+
+
+
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
@@ -137,19 +140,19 @@
             </div>
         </div>
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
     </div>
-  
+
 
 
 
@@ -191,7 +194,7 @@
 <div style=" margin-top:150px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
   <img class="round" src="{{asset('images/portrait/small/thanksblack.png') }}" alt="avatar" height="300" width="800" />
-    
+
   </div>
 </div>
 
@@ -203,10 +206,10 @@
   <script>
 
 (function () {
- 
 
 
- 
+
+
 
 
 }());
@@ -218,7 +221,7 @@
 
 
 function switchColor(btnColor,btnRes){
-        
+
       var btnC = document.getElementById(btnColor);
       var btnR = document.getElementById(btnRes);
       var value=btnR.value;
@@ -228,7 +231,7 @@ function switchColor(btnColor,btnRes){
       var btnTik = document.getElementById('TikBtn');
 
 
-      
+
         if(value==0){
         btnC.style.background = '#ffd966';
         btnR.value='1';
@@ -237,7 +240,7 @@ function switchColor(btnColor,btnRes){
 
         }else{
         btnC.style.background = 'white';
-        btnR.value='0'; 
+        btnR.value='0';
 
         var btnFaceVal = parseInt(document.getElementById('fbBtn2').value);
       var btnInstaVal = parseInt(document.getElementById('IgBtn2').value);
@@ -256,11 +259,11 @@ function switchColor(btnColor,btnRes){
           }
 
 
-      
+
 
         }
 
-    
+
 
 
 }
