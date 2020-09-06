@@ -131,7 +131,7 @@
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;"; class="" src="{{asset('images/portrait/small/oth4.png') }}" alt="avatar" height="75" width="75" /></span></span><br><br><b></b></button>
+                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;"; class="" src="{{asset('images/portrait/small/oth4.PNG') }}" alt="avatar" height="75" width="75" /></span></span><br><br><b></b></button>
                 </center>
           </div>
             </div>
@@ -168,7 +168,7 @@
   <center>
 <!-- Button trigger modal -->
 <button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn "  data-toggle="modal" data-target="#exampleModal" >
-<img class="" src="{{asset('images/portrait/small/arabicsend.png') }}" alt="avatar" height="60" width="123" />
+<img class="" src="{{asset('images/portrait/small/arabicsend.PNG') }}" alt="avatar" height="60" width="123" />
 </button>
 </center>
 
@@ -190,7 +190,7 @@
 <!-- Modal -->
 <div style=" margin-top:150px; margin-right:200px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-  <img class="round" src="{{asset('images/portrait/small/arabicthanks.png') }}" alt="avatar" height="250" width="550" />
+  <img class="round" src="{{asset('images/portrait/small/arabicthanks.PNG') }}" alt="avatar" height="250" width="550" />
     
   </div>
 </div>
