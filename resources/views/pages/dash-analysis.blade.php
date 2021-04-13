@@ -92,7 +92,20 @@ label {
          </div>
 </div>
 
+<div>
+        <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-end ">
+                  <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
+              </div>
+              <div class="card-content">
 
+                  <div class="card-body pb-0">
+
+                  <a href="#" class="btn btn-primary">Export as CSV</a>
+                  </div>
+              </div>
+         </div>
+</div>
 
 
 
