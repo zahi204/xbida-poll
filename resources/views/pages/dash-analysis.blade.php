@@ -101,7 +101,7 @@ label {
 
                   <div class="card-body pb-0 mb-1">
 
-                  <a href="{{ route() }}" class="btn btn-primary">Export as CSV</a>
+                  <a href="{{ route('getCSV') }}" class="btn btn-primary">Export as CSV</a>
                   </div>
               </div>
          </div>
