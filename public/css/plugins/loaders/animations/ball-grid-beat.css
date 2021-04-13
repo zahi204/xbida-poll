@@ -1,1 +1,109 @@
-@-webkit-keyframes ball-grid-beat{50%{opacity:.7}to{opacity:1}}@keyframes ball-grid-beat{50%{opacity:.7}to{opacity:1}}.ball-grid-beat{width:57px}.ball-grid-beat>div:first-child{-webkit-animation-delay:.27s;animation-delay:.27s;-webkit-animation-duration:.74s;animation-duration:.74s}.ball-grid-beat>div:nth-child(2){-webkit-animation-delay:0s;animation-delay:0s;-webkit-animation-duration:1.29s;animation-duration:1.29s}.ball-grid-beat>div:nth-child(3){-webkit-animation-delay:.23s;animation-delay:.23s;-webkit-animation-duration:1.09s;animation-duration:1.09s}.ball-grid-beat>div:nth-child(4){-webkit-animation-delay:0s;animation-delay:0s;-webkit-animation-duration:1.47s;animation-duration:1.47s}.ball-grid-beat>div:nth-child(5){-webkit-animation-delay:.75s;animation-delay:.75s;-webkit-animation-duration:.96s;animation-duration:.96s}.ball-grid-beat>div:nth-child(6){-webkit-animation-delay:.15s;animation-delay:.15s;-webkit-animation-duration:.83s;animation-duration:.83s}.ball-grid-beat>div:nth-child(7){-webkit-animation-delay:.37s;animation-delay:.37s;-webkit-animation-duration:.93s;animation-duration:.93s}.ball-grid-beat>div:nth-child(8){-webkit-animation-delay:.78s;animation-delay:.78s;-webkit-animation-duration:.63s;animation-duration:.63s}.ball-grid-beat>div:nth-child(9){-webkit-animation-delay:-.11s;animation-delay:-.11s;-webkit-animation-duration:.62s;animation-duration:.62s}.ball-grid-beat>div{background-color:#b8c2cc;width:15px;height:15px;border-radius:100%;margin:2px;-webkit-animation-fill-mode:both;animation-fill-mode:both;display:inline-block;float:left;-webkit-animation-name:ball-grid-beat;animation-name:ball-grid-beat;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-delay:0;animation-delay:0}
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+
+@-webkit-keyframes ball-grid-beat {
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ball-grid-beat {
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ball-grid-beat {
+  width: 57px;
+}
+
+.ball-grid-beat > div:nth-child(1) {
+  -webkit-animation-delay: -0.18s;
+          animation-delay: -0.18s;
+  -webkit-animation-duration: 1.34s;
+          animation-duration: 1.34s;
+}
+
+.ball-grid-beat > div:nth-child(2) {
+  -webkit-animation-delay: 0.07s;
+          animation-delay: 0.07s;
+  -webkit-animation-duration: 0.91s;
+          animation-duration: 0.91s;
+}
+
+.ball-grid-beat > div:nth-child(3) {
+  -webkit-animation-delay: 0.21s;
+          animation-delay: 0.21s;
+  -webkit-animation-duration: 1.58s;
+          animation-duration: 1.58s;
+}
+
+.ball-grid-beat > div:nth-child(4) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+}
+
+.ball-grid-beat > div:nth-child(5) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+  -webkit-animation-duration: 0.91s;
+          animation-duration: 0.91s;
+}
+
+.ball-grid-beat > div:nth-child(6) {
+  -webkit-animation-delay: 0.21s;
+          animation-delay: 0.21s;
+  -webkit-animation-duration: 1.57s;
+          animation-duration: 1.57s;
+}
+
+.ball-grid-beat > div:nth-child(7) {
+  -webkit-animation-delay: 0.71s;
+          animation-delay: 0.71s;
+  -webkit-animation-duration: 1.21s;
+          animation-duration: 1.21s;
+}
+
+.ball-grid-beat > div:nth-child(8) {
+  -webkit-animation-delay: 0.05s;
+          animation-delay: 0.05s;
+  -webkit-animation-duration: 1.04s;
+          animation-duration: 1.04s;
+}
+
+.ball-grid-beat > div:nth-child(9) {
+  -webkit-animation-delay: 0.69s;
+          animation-delay: 0.69s;
+  -webkit-animation-duration: 0.86s;
+          animation-duration: 0.86s;
+}
+
+.ball-grid-beat > div {
+  background-color: #b8c2cc;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: inline-block;
+  float: left;
+  -webkit-animation-name: ball-grid-beat;
+          animation-name: ball-grid-beat;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+}
+
