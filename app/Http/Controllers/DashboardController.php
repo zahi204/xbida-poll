@@ -70,12 +70,35 @@ class DashboardController extends Controller
         }
       
       
-       $overalls = collect($inrange_overall);
-       $dates = $overalls->pluck('date');
-       $facebookDayByDay = $overalls->pluck('facebook');
-       $instagramDayByDay = $overalls->pluck('instagram');
-       $tiktokDayByDay =$overalls->pluck('tiktok');
-       $otherDayByDay = $overalls->pluck('other');
+       $overall_collection = collect($inrange_overall);
+
+       $overall_sorted_collection = $overall_collection->sortBy('date');
+
+       $dates = $overall_sorted_collection->pluck('date');
+       $facebookDayByDay = $overall_sorted_collection->pluck('facebook');
+       $instagramDayByDay = $overall_sorted_collection->pluck('instagram');
+       $tiktokDayByDay = $overall_sorted_collection->pluck('tiktok');
+       $otherDayByDay = $overall_sorted_collection->pluck('other');
+
+       for($i=$dates->count()-1 ; $i > 0  ; $i--){
+        $facebookDayByDay[$i] = $facebookDayByDay[$i] - $facebookDayByDay[$i-1];
+        $instagramDayByDay[$i] = $instagramDayByDay[$i] - $instagramDayByDay[$i-1];
+        $tiktokDayByDay[$i] = $tiktokDayByDay[$i] - $tiktokDayByDay[$i-1];
+        $otherDayByDay[$i] = $otherDayByDay[$i] - $otherDayByDay[$i-1];
+       }
+       //fix 0th date
+       if($dates->count() > 0){
+        $prev_of_zero = Carbon::parse($dates[0])->subDay()->format("Y-m-d");
+        $zero_prev_row = DB::table('overalls')->where('date', $prev_of_zero)->first();
+        if(!is_null($zero_prev_row)){
+         $facebookDayByDay[0] = $facebookDayByDay[0] - $zero_prev_row->facebook;
+         $instagramDayByDay[0] = $instagramDayByDay[0] - $zero_prev_row->instagram;
+         $tiktokDayByDay[0] = $tiktokDayByDay[0] - $zero_prev_row->tiktok;
+         $otherDayByDay[0] = $otherDayByDay[0] - $zero_prev_row->other;
+        }
+       }
+       
+
 
        return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
        ,'instagramDayByDay','tiktokDayByDay','otherDayByDay','from','to'));
