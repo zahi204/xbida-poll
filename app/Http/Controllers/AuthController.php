@@ -10,6 +10,7 @@ use App\Survey;
 use App\Overall;
 
 use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class AuthController extends Controller
 {
@@ -72,14 +73,25 @@ class AuthController extends Controller
          $InstTotal=$overall->instagram;
          $OthTotal=$overall->other;
        }
-       $dates = Overall::all()->pluck('date');
-       $facebookDayByDay = Overall::all()->pluck('facebook');
-       $instagramDayByDay = Overall::all()->pluck('instagram');
-       $tiktokDayByDay = Overall::all()->pluck('tiktok');
-       $otherDayByDay = Overall::all()->pluck('other');
+       $overall_collection = Overall::all();
+       $overall_sorted_collection = $overall_collection->sortBy('date');
+
+       $dates = $overall_sorted_collection->pluck('date');
+       $facebookDayByDay = $overall_sorted_collection->pluck('facebook');
+       $instagramDayByDay = $overall_sorted_collection->pluck('instagram');
+       $tiktokDayByDay = $overall_sorted_collection->pluck('tiktok');
+       $otherDayByDay = $overall_sorted_collection->pluck('other');
+
+       for($i=$dates->count()-1 ; $i > 0  ; $i--){
+        $facebookDayByDay[$i] = $facebookDayByDay[$i] - $facebookDayByDay[$i-1];
+        $instagramDayByDay[$i] = $instagramDayByDay[$i] - $instagramDayByDay[$i-1];
+        $tiktokDayByDay[$i] = $tiktokDayByDay[$i] - $tiktokDayByDay[$i-1];
+        $otherDayByDay[$i] = $otherDayByDay[$i] - $otherDayByDay[$i-1];
+       }
+
 
        $from = Carbon::parse("2021-1-1")->format("Y-m-d");
-       $to = Carbon::parse("2022-1-1")->format("Y-m-d");
+       $to = Carbon::parse("2021-2-1")->format("Y-m-d");
 
 
        return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
@@ -365,22 +377,37 @@ class AuthController extends Controller
      */
 
     private function addPreviousDatesToOverallTable($current_date){
-        $prev_date = $current_date->subDays(1)->format("Y-m-d");
+        $prev_date_carbon = $current_date->subDays(1);
+        $prev_date = $prev_date_carbon->format("Y-m-d");
         $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
         $initial_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
 
         while(is_null($prev_date_row) && $prev_date != $initial_date){
 
-            DB::table('overalls')->insert([
-                'date' => $prev_date,
-                'facebook' => 0,
-                'instagram' => 0,
-                'tiktok' => 0,
-                'other' => 0,
-            ]);
-            $prev_date = Carbon::parse($prev_date)->subDays(1)->format("Y-m-d");
+
+            $prev_date_carbon = $prev_date_carbon->subDays(1);
+            $prev_date = $prev_date_carbon->format("Y-m-d");
             $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
         }
+        
+        if($prev_date_row != null){
+            while($current_date->notEqualTo($prev_date_carbon)){
+
+                DB::table('overalls')->insert([
+                    'date' => $prev_date_carbon->addDay()->format("Y-m-d"),
+                    'facebook' => $prev_date_row->facebook,
+                    'instagram' => $prev_date_row->instagram,
+                    'tiktok' => $prev_date_row->tiktok,
+                    'other' => $prev_date_row->other,
+                ]);
+                $prev_date_carbon = $prev_date_carbon->addDay();
+                $prev_date = $prev_date_carbon->format("Y-m-d");
+                $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+
+            }
+
+        }
+
 
 
     }
