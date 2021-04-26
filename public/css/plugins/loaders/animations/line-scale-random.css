@@ -31,31 +31,31 @@
 }
 
 .line-scale-party > div:nth-child(1) {
-  -webkit-animation-delay: 0.74s;
-          animation-delay: 0.74s;
-  -webkit-animation-duration: 0.39s;
-          animation-duration: 0.39s;
+  -webkit-animation-delay: 0.07s;
+          animation-delay: 0.07s;
+  -webkit-animation-duration: 0.92s;
+          animation-duration: 0.92s;
 }
 
 .line-scale-party > div:nth-child(2) {
-  -webkit-animation-delay: 0.29s;
-          animation-delay: 0.29s;
-  -webkit-animation-duration: 0.64s;
-          animation-duration: 0.64s;
+  -webkit-animation-delay: 0.01s;
+          animation-delay: 0.01s;
+  -webkit-animation-duration: 1.17s;
+          animation-duration: 1.17s;
 }
 
 .line-scale-party > div:nth-child(3) {
-  -webkit-animation-delay: 0.33s;
-          animation-delay: 0.33s;
-  -webkit-animation-duration: 1.01s;
-          animation-duration: 1.01s;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+  -webkit-animation-duration: 0.58s;
+          animation-duration: 0.58s;
 }
 
 .line-scale-party > div:nth-child(4) {
-  -webkit-animation-delay: 0.18s;
-          animation-delay: 0.18s;
-  -webkit-animation-duration: 0.94s;
-          animation-duration: 0.94s;
+  -webkit-animation-delay: 0.34s;
+          animation-delay: 0.34s;
+  -webkit-animation-duration: 0.58s;
+          animation-duration: 0.58s;
 }
 
 .line-scale-party > div {

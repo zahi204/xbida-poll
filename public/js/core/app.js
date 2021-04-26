@@ -856,7 +856,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/forge/157.230.117.15/resources/js/core/app.js */"./resources/js/core/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Zahi\dev\Irestweb\xbida-poll\resources\js\core\app.js */"./resources/js/core/app.js");
 
 
 /***/ })
