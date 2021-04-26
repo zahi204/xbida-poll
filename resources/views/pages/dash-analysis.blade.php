@@ -407,7 +407,8 @@
     var tiktokDayByDay = <?php echo $tiktokDayByDay; ?>;
     var otherDayByDay = <?php echo $otherDayByDay; ?>;
 
-
+    const dynamicWidth = dates.length * 50;
+    const chartWidth = dynamicWidth < window.innerWidth ? '100%' : dynamicWidth;
 
     // Revenue  Chart
     // -----------------------------
@@ -415,7 +416,7 @@
     var revenueChartoptions = {
         chart: {
             height: 260,
-            width: dates.length * 50,
+            width: chartWidth,
             toolbar: {
                 show: false
             },
