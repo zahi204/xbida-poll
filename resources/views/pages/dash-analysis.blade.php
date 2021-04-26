@@ -234,7 +234,7 @@
 
                             <div class="d-flex justify-content-start"></div>
 
-                            <div id="revenue-chart"></div>
+                            <div id="revenue-chart" style="overflow: auto;"></div>
                         </div>
                     </div>
                 </div>
@@ -294,8 +294,8 @@
     var total = btnFaceVal + btnInstaVal + btnTikVal + btnOthVal;
 
     var fbperc = (btnFaceVal / total) * 100;
-    var tikperc = (btnInstaVal / total) * 100;
-    var instperc = (btnTikVal / total) * 100;
+    var instperc = (btnInstaVal / total) * 100;
+    var tikperc = (btnTikVal / total) * 100;
     var othperc = (btnOthVal / total) * 100;
 
    
@@ -415,9 +415,11 @@
     var revenueChartoptions = {
         chart: {
             height: 260,
+            width: dates.length * 50,
             toolbar: {
                 show: false
             },
+            
             type: 'line',
             animations: {
                 enabled: true,

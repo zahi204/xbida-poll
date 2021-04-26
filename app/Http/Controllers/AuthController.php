@@ -123,7 +123,7 @@ class AuthController extends Controller
         if (!Auth::attempt($credentials)) {
             // Authentication not passed...
             return redirect('/auth-login');
-            
+
         }
 
         $username=$request->username;
@@ -137,7 +137,7 @@ class AuthController extends Controller
             $company_id = DB::table('users')->where('username', $username)->value('id');
             $branch_id = DB::table('users')->where('username', $username)->value('branch_id');
             $name = DB::table('users')->where('username', $username)->value('name');
-    
+
             $time = DB::table('users')->where('username', $username)->value('created_at');
             $datex = Carbon::parse($time);
             $date = $datex->format("Y-m-d");
@@ -358,7 +358,7 @@ class AuthController extends Controller
         }
 
 
-        
+
 
 
     }
@@ -366,7 +366,7 @@ class AuthController extends Controller
 
 
     $this->addPreviousDatesToOverallTable($datex);
-       
+
     return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
 
 
@@ -377,41 +377,38 @@ class AuthController extends Controller
      */
 
     private function addPreviousDatesToOverallTable($current_date){
-        $prev_date_carbon = $current_date->subDays(1);
+
+        $prev_date_carbon = $current_date->copy()->subDays(1);
         $prev_date = $prev_date_carbon->format("Y-m-d");
         $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
         $initial_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
 
-        while(is_null($prev_date_row) && $prev_date != $initial_date){
+//        while(is_null($prev_date_row) && $prev_date != $initial_date){
+//
+//
+//            $prev_date_carbon = $prev_date_carbon->subDays(1);
+//            $prev_date = $prev_date_carbon->format("Y-m-d");
+//            $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+//        }
 
+        while($prev_date != Carbon::parse($initial_date)->subDay()->format("Y-m-d")){
 
-            $prev_date_carbon = $prev_date_carbon->subDays(1);
-            $prev_date = $prev_date_carbon->format("Y-m-d");
-            $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+          if($prev_date_row == null){
+            DB::table('overalls')->insert([
+              'date' => $prev_date_carbon->format("Y-m-d"),
+              'facebook' =>  0,
+              'instagram' =>  0,
+              'tiktok' =>  0,
+              'other' =>  0,
+            ]);
+          }
+          $prev_date_carbon = $prev_date_carbon->subDays(1);
+          $prev_date = $prev_date_carbon->format("Y-m-d");
+          $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+
         }
-        
-        if($prev_date_row != null){
-            while($current_date->notEqualTo($prev_date_carbon)){
-
-                DB::table('overalls')->insert([
-                    'date' => $prev_date_carbon->addDay()->format("Y-m-d"),
-                    'facebook' => $prev_date_row->facebook,
-                    'instagram' => $prev_date_row->instagram,
-                    'tiktok' => $prev_date_row->tiktok,
-                    'other' => $prev_date_row->other,
-                ]);
-                $prev_date_carbon = $prev_date_carbon->addDay();
-                $prev_date = $prev_date_carbon->format("Y-m-d");
-                $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
-
-            }
-
-        }
-
-
 
     }
-
     /**
      * Get the authenticated User
      *
