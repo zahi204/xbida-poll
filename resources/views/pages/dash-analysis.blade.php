@@ -75,7 +75,7 @@ label {
 <div class="col-xs-8 col-sm-8 col-8">
 
 
-<!-- <div id="text1">
+<div id="text1">
         <div class="card">
               <div class="card-header d-flex justify-content-between align-items-end ">
                   <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
@@ -90,7 +90,7 @@ label {
                   </div>
               </div>
          </div>
-</div> -->
+</div>
 
 <div>
         <div class="card">
@@ -109,7 +109,7 @@ label {
 
 
 
-        <div id="text2">
+        <!-- <div id="text2">
         <div class="card">
               <div class="card-header d-flex justify-content-between align-items-end ">
                   <h4 class="card-title ">כמות האנשים ערוץ ברמה יומית לתקופה שנבחרה</h4>
@@ -126,7 +126,7 @@ label {
           </div>
 
 
-    </div>
+        </div> -->
 
 
 
