@@ -149,7 +149,8 @@ label {
             <div class="card" style="">
                 <div class="card-content collapse show" aria-expanded="true">
                     <div class="card-body" >
-                            <form action="" method="post">
+                            <form action="{{route('analytics.by.range')}}" method="post">
+                            {{ csrf_field() }}
                                 <span>בחר תאיך התחלה וסיום</span>
                                 <br>
                                 <br>
@@ -157,11 +158,11 @@ label {
 
                                 <div class="form-label-group">
                                 <label for="inputName">מיום</label>מיום:
-                                    <input type='date'  value="2020-08-22" class='form-control'>
+                                    <input type='date' name="from"  value="2020-08-22" class='form-control' value="{{$from}}">
                                 </div>
                                 <div class="form-label-group">
                                 <label for="inputBranch">עד יום</label>עד יום:
-                                    <input type='date'  class='form-control'>
+                                    <input type='date' name="to"  class='form-control'  value="{{$to}}">
                                 </div>
                                 <button type="submit" class="btn btn-primary float-center btn-inline mb-50">Refresh</a>
                             </form>
@@ -277,6 +278,9 @@ label {
 <input Hidden name="ig" type="text" class="form-control" id="IgBtn2"  value='<?php echo $TikTotal; ?>' placeholder="" >
 <input Hidden name="tik" type="text" class="form-control" id="TikBtn2"  value='<?php echo $InstTotal; ?>' placeholder="" >
 <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='<?php echo $OthTotal; ?>'placeholder="" >
+
+<!-- <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='<?php echo $OthTotal; ?>'placeholder="" >
+<input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='<?php echo $OthTotal; ?>'placeholder="" > -->
 
 
 
@@ -409,6 +413,12 @@ var $yel = '#FFFF00';
 
 
 
+    var dates = <?php echo $dates; ?>;
+    var facebookDayByDay = <?php echo $facebookDayByDay; ?>;
+    var instagramDayByDay = <?php echo $instagramDayByDay; ?>;
+    var tiktokDayByDay = <?php echo $tiktokDayByDay; ?>;
+    var otherDayByDay = <?php echo $otherDayByDay; ?>;
+
 
 
     // Revenue  Chart
@@ -419,7 +429,15 @@ var $yel = '#FFFF00';
         height: 260,
         toolbar: { show: false },
         type: 'line',
+        animations: {
+            enabled: true,
+            easing: 'linear',
+            dynamicAnimation: {
+              speed: 1000
+            }
+          },
       },
+      
       stroke: {
           curve: 'smooth',
           dashArray: [0, 0,0,0],
@@ -458,10 +476,11 @@ var $yel = '#FFFF00';
                   colors: $strok_color,
               }
           },
+          tickAmount:10,
           axisTicks: {
               show: false,
           },
-          categories: ['01', '05', '09', '13', '17', '21', '26', '31'],
+          categories: dates,
           axisBorder: {
               show: false,
           },
@@ -483,20 +502,20 @@ var $yel = '#FFFF00';
       },
       series: [{
               name: "Facebook",
-              data: [14, 53, 78, 45, 24, 35, 24, 25]
+              data: facebookDayByDay
           },
           {
               name: "TikTok",
-              data: [90, 47, 74, 11, 13, 10, 50, 48]
+              data: tiktokDayByDay
           },
           {
             name: "Instagram",
-            data: [87, 88, 55, 4, 11, 55, 50, 78]
+            data: instagramDayByDay
         },
 
         {
               name: "Other",
-              data: [66, 41, 78, 67, 70, 40, 25, 34]
+              data: otherDayByDay
           }
       ],
 

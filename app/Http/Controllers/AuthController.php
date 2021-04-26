@@ -57,6 +57,37 @@ class AuthController extends Controller
 
     }
 
+
+
+    private function redirectToSuperAdminDashboard(){
+        $overall = DB::table('overalls')->latest()->first();
+        // Overall::latest();
+       $FbTotal=0;
+       $TikTotal=0;
+       $InstTotal=0;
+       $OthTotal=0;
+       if($overall != null){
+         $FbTotal=$overall->facebook;
+         $TikTotal=$overall->tiktok;
+         $InstTotal=$overall->instagram;
+         $OthTotal=$overall->other;
+       }
+       $dates = Overall::all()->pluck('date');
+       $facebookDayByDay = Overall::all()->pluck('facebook');
+       $instagramDayByDay = Overall::all()->pluck('instagram');
+       $tiktokDayByDay = Overall::all()->pluck('tiktok');
+       $otherDayByDay = Overall::all()->pluck('other');
+
+       $from = Carbon::parse("2021-1-1")->format("Y-m-d");
+       $to = Carbon::parse("2022-1-1")->format("Y-m-d");
+
+
+       return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
+    ,'instagramDayByDay','tiktokDayByDay','otherDayByDay','from','to'));
+
+    }
+
+
     /**
      * Login user and create token
      *
@@ -86,65 +117,24 @@ class AuthController extends Controller
         $username=$request->username;
 
         $role = DB::table('users')->where('username', $username)->value('role');
-        $current_user = DB::table('users')->where('username', $username)->get();
-
-
-        $company_id = DB::table('users')->where('username', $username)->value('id');
-        $branch_id = DB::table('users')->where('username', $username)->value('branch_id');
-        $name = DB::table('users')->where('username', $username)->value('name');
-
-        $time = DB::table('users')->where('username', $username)->value('created_at');
-        $datex = Carbon::parse($time);
-        $date = $datex->format("Y-m-d");
-
-        $last_row = DB::table('users')->latest()->first();
-        $omar = $last_row->name;
-
-        $overall = DB::table('overalls')->latest()->first();
-       // Overall::latest();
-      $FbTotal=0;
-      $TikTotal=0;
-      $InstTotal=0;
-      $OthTotal=0;
-      if($overall != null){
-        $FbTotal=$overall->facebook;
-        $TikTotal=$overall->tiktok;
-        $InstTotal=$overall->instagram;
-        $OthTotal=$overall->other;
-      }
 
        // $overall01 = DB::table('overalls')->where('date','2020-*')->first();
 
         if($role=='user'){
-            return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','date','omar'));
+            $current_user = DB::table('users')->where('username', $username)->get();
+            $company_id = DB::table('users')->where('username', $username)->value('id');
+            $branch_id = DB::table('users')->where('username', $username)->value('branch_id');
+            $name = DB::table('users')->where('username', $username)->value('name');
+    
+            $time = DB::table('users')->where('username', $username)->value('created_at');
+            $datex = Carbon::parse($time);
+            $date = $datex->format("Y-m-d");
+            return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','date'));
         }
         else{
-
-            return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal'));
-
+            return $this->redirectToSuperAdminDashboard();
         }
 
-        /*
-        $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ]);
-
-        */
     }
 
     /**
@@ -356,13 +346,44 @@ class AuthController extends Controller
         }
 
 
-    }
-        return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
+        
 
 
     }
 
 
+
+    $this->addPreviousDatesToOverallTable($datex);
+       
+    return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
+
+
+}
+    /**
+     * add unexisted previous dates to the overall table as zero values
+     *
+     */
+
+    private function addPreviousDatesToOverallTable($current_date){
+        $prev_date = $current_date->subDays(1)->format("Y-m-d");
+        $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+        $initial_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
+
+        while(is_null($prev_date_row) && $prev_date != $initial_date){
+
+            DB::table('overalls')->insert([
+                'date' => $prev_date,
+                'facebook' => 0,
+                'instagram' => 0,
+                'tiktok' => 0,
+                'other' => 0,
+            ]);
+            $prev_date = Carbon::parse($prev_date)->subDays(1)->format("Y-m-d");
+            $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+        }
+
+
+    }
 
     /**
      * Get the authenticated User
