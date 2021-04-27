@@ -49,8 +49,6 @@ class DashboardController extends Controller
        
             $latest_date_overall = $overall_sorted_collection->last();
 
-
-
             $FbTotal=$latest_date_overall->facebook;
             $TikTotal=$latest_date_overall->tiktok;
             $InstTotal=$latest_date_overall->instagram;

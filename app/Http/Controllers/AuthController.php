@@ -93,7 +93,7 @@ class AuthController extends Controller
          $TikTotal=$latest_date_overall->tiktok;
          $InstTotal=$latest_date_overall->instagram;
          $OthTotal=$latest_date_overall->other;
-        
+       }
        
 
        $dates = $overall_sorted_collection->pluck('date');
@@ -114,7 +114,7 @@ class AuthController extends Controller
 
 
 
-    }
+    
     return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
     ,'instagramDayByDay','tiktokDayByDay','otherDayByDay','from','to'));
 
