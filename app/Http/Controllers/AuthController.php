@@ -412,50 +412,30 @@ class AuthController extends Controller
         $latest_row = ($it_date_row == null)? null :$it_date_row; 
 
         while(Carbon::parse($it_date)->diffInDays(Carbon::parse($current_date)) != 0 ){
-
-            $new_overall = DB::table('surveys')
-            ->selectRaw('
-                SUM(facebook) AS fb,
-                SUM(instagram) AS ins,
-                SUM(tiktok) AS tik,
-                SUM(other) AS oth
-            ')
-            ->where('created_at', '<', Carbon::parse($it_date)->addDay())
-            ->get();
+            $current_date_row = DB::table('overalls')->where('date', $it_date)->first();
+            if($current_date_row == null){
+                $new_overall = DB::table('surveys')
+                ->selectRaw('
+                    SUM(facebook) AS fb,
+                    SUM(instagram) AS ins,
+                    SUM(tiktok) AS tik,
+                    SUM(other) AS oth
+                ')
+                ->where('created_at', '<', Carbon::parse($it_date)->addDay())
+                ->get();
+                
+    
+                $overall = new Overall([
+                    'date' => $it_date,
+                    'facebook' => (intval($new_overall[0]->fb) == null)? 0 : $new_overall[0]->fb,
+                    'instagram' => (intval($new_overall[0]->ins) == null)? 0 : $new_overall[0]->ins,
+                    'tiktok' => (intval($new_overall[0]->tik) == null)? 0 : $new_overall[0]->tik,
+                    'other' => (intval($new_overall[0]->oth) == null)? 0 : $new_overall[0]->oth,
+                ]);
+    
+                $overall->save();
+            }
             
-
-            $overall = new Overall([
-                'date' => $it_date,
-                'facebook' => (intval($new_overall[0]->fb) == null)? 0 : $new_overall[0]->fb,
-                'instagram' => (intval($new_overall[0]->ins) == null)? 0 : $new_overall[0]->ins,
-                'tiktok' => (intval($new_overall[0]->tik) == null)? 0 : $new_overall[0]->tik,
-                'other' => (intval($new_overall[0]->oth) == null)? 0 : $new_overall[0]->oth,
-            ]);
-
-            $overall->save();
-
-            // if($it_date_row == null){//need to be inserted
-            //     if($latest_row == null){ // first must be 0
-            //         DB::table('overalls')->insert([
-            //             'date' => $it_date,
-            //             'facebook' =>  0,
-            //             'instagram' =>  0,
-            //             'tiktok' =>  0,
-            //             'other' =>  0,
-            //           ]);
-            //     }else{
-            //         DB::table('overalls')->insert([
-            //             'date' => $it_date,
-            //             'facebook' =>  $latest_row->facebook,
-            //             'instagram' =>  $latest_row->instagram,
-            //             'tiktok' =>  $latest_row->tiktok,
-            //             'other' =>  $latest_row->other,
-            //           ]);
-            //     }
-            // }else{
-            //     $latest_row = $it_date_row;
-            // }
-
             $it_date = Carbon::parse($it_date)->addDay()->format("Y-m-d");
             // $it_date_row = DB::table('overalls')->where('date', $it_date)->first();
         }
