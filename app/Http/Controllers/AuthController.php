@@ -274,88 +274,109 @@ class AuthController extends Controller
         }else{
 
 
+            $date2 = Carbon::parse($date)->addDay();
+            // $last_row_overall = $this->getLatestOverAllDate(date);
+            $new_overall = DB::table('surveys')
+            ->selectRaw('
+                SUM(facebook) AS fb,
+                SUM(instagram) AS ins,
+                SUM(tiktok) AS tik,
+                SUM(other) AS oth
+            ')
+            ->where('created_at', '<',$date2 )
+            ->get();
+            
+            $overall = new Overall([
+                'date' => $date,
+                'facebook' => intval($new_overall[0]->fb),
+                'instagram' => intval($new_overall[0]->ins),
+                'tiktok' => intval($new_overall[0]->tik),
+                'other' => intval($new_overall[0]->oth)
+            ]);
 
-            $last_row_overall = DB::table('overalls')->latest()->first();
+            $overall->save();
+
+
 
             //$rowsCountOverall = $last_row_overall->count();
 
-            if(is_null($last_row_overall)){
+        //     if(is_null($last_row_overall)){
 
-                $facebook2 = $last_row->facebook;
-                $instagram2 = $last_row->instagram;
-                $tiktok2 = $last_row->tiktok;
-                $other2 = $last_row->other;
+        //         $facebook2 = $last_row->facebook;
+        //         $instagram2 = $last_row->instagram;
+        //         $tiktok2 = $last_row->tiktok;
+        //         $other2 = $last_row->other;
 
-                $facebook2=intval($facebook2);
-                $instagram2=intval($instagram2);
-                $tiktok2=intval($tiktok2);
-                $other2=intval($other2);
-
-
-
-
-
-          $overall = new Overall([
-
-                'date' => $date,
-                'facebook' => $facebook2,
-                'instagram' => $instagram2,
-                'tiktok' => $tiktok2,
-                'other' => $other2
-
-
-            ]);
-
-            $overall->save();
-
-
-          }
-        else{
-
-
-
-            $facebook = $last_row_overall->facebook;
-            $instagram = $last_row_overall->instagram;
-            $tiktok = $last_row_overall->tiktok;
-            $other = $last_row_overall->other;
-
-
-            $facebook2 = $last_row->facebook;
-            $instagram2 = $last_row->instagram;
-            $tiktok2 = $last_row->tiktok;
-            $other2 = $last_row->other;
-
-            $facebook2=intval($facebook2);
-            $instagram2=intval($instagram2);
-            $tiktok2=intval($tiktok2);
-            $other2=intval($other2);
-
-
-            $facebook2 = $facebook2+$facebook;
-            $instagram2 = $instagram2+$instagram;
-            $tiktok2 = $tiktok2+$tiktok;
-            $other2 =$other2+$other;
+        //         $facebook2=intval($facebook2);
+        //         $instagram2=intval($instagram2);
+        //         $tiktok2=intval($tiktok2);
+        //         $other2=intval($other2);
 
 
 
 
-            $overall = new Overall([
 
-                'date' => $date,
-                'facebook' => $facebook2,
-                'instagram' => $instagram2,
-                'tiktok' => $tiktok2,
-                'other' => $other2
+        //   $overall = new Overall([
 
-
-            ]);
-
-            $overall->save();
+        //         'date' => $date,
+        //         'facebook' => $facebook2,
+        //         'instagram' => $instagram2,
+        //         'tiktok' => $tiktok2,
+        //         'other' => $other2
 
 
+        //     ]);
+
+        //     $overall->save();
 
 
-        }
+        //   }
+        // else{
+
+
+
+        //     $facebook = $last_row_overall->facebook;
+        //     $instagram = $last_row_overall->instagram;
+        //     $tiktok = $last_row_overall->tiktok;
+        //     $other = $last_row_overall->other;
+
+
+        //     $facebook2 = $last_row->facebook;
+        //     $instagram2 = $last_row->instagram;
+        //     $tiktok2 = $last_row->tiktok;
+        //     $other2 = $last_row->other;
+
+        //     $facebook2=intval($facebook2);
+        //     $instagram2=intval($instagram2);
+        //     $tiktok2=intval($tiktok2);
+        //     $other2=intval($other2);
+
+
+        //     $facebook2 = $facebook2+$facebook;
+        //     $instagram2 = $instagram2+$instagram;
+        //     $tiktok2 = $tiktok2+$tiktok;
+        //     $other2 =$other2+$other;
+
+
+
+
+        //     $overall = new Overall([
+
+        //         'date' => $date,
+        //         'facebook' => $facebook2,
+        //         'instagram' => $instagram2,
+        //         'tiktok' => $tiktok2,
+        //         'other' => $other2
+
+
+        //     ]);
+
+        //     $overall->save();
+
+
+
+
+        // }
 
 
 
@@ -378,35 +399,84 @@ class AuthController extends Controller
 
     private function addPreviousDatesToOverallTable($current_date){
 
-        $prev_date_carbon = $current_date->copy()->subDays(1);
-        $prev_date = $prev_date_carbon->format("Y-m-d");
-        $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+        // $prev_date_carbon = $current_date->copy()->subDays(1);
+        // $prev_date = $prev_date_carbon->format("Y-m-d");
+        // $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+
+
+
         $initial_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
+        
+        $it_date_row = DB::table('overalls')->where('date', $initial_date)->first();
+        $it_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
+        $latest_row = ($it_date_row == null)? null :$it_date_row; 
 
-//        while(is_null($prev_date_row) && $prev_date != $initial_date){
-//
-//
-//            $prev_date_carbon = $prev_date_carbon->subDays(1);
-//            $prev_date = $prev_date_carbon->format("Y-m-d");
-//            $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
-//        }
+        while(Carbon::parse($it_date)->diffInDays(Carbon::parse($current_date)) != 0 ){
 
-        while($prev_date != Carbon::parse($initial_date)->subDay()->format("Y-m-d")){
+            $new_overall = DB::table('surveys')
+            ->selectRaw('
+                SUM(facebook) AS fb,
+                SUM(instagram) AS ins,
+                SUM(tiktok) AS tik,
+                SUM(other) AS oth
+            ')
+            ->where('created_at', '<', Carbon::parse($it_date)->addDay())
+            ->get();
+            
 
-          if($prev_date_row == null){
-            DB::table('overalls')->insert([
-              'date' => $prev_date_carbon->format("Y-m-d"),
-              'facebook' =>  0,
-              'instagram' =>  0,
-              'tiktok' =>  0,
-              'other' =>  0,
+            $overall = new Overall([
+                'date' => $it_date,
+                'facebook' => (intval($new_overall[0]->fb) == null)? 0 : $new_overall[0]->fb,
+                'instagram' => (intval($new_overall[0]->ins) == null)? 0 : $new_overall[0]->ins,
+                'tiktok' => (intval($new_overall[0]->tik) == null)? 0 : $new_overall[0]->tik,
+                'other' => (intval($new_overall[0]->oth) == null)? 0 : $new_overall[0]->oth,
             ]);
-          }
-          $prev_date_carbon = $prev_date_carbon->subDays(1);
-          $prev_date = $prev_date_carbon->format("Y-m-d");
-          $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
 
+            $overall->save();
+
+            // if($it_date_row == null){//need to be inserted
+            //     if($latest_row == null){ // first must be 0
+            //         DB::table('overalls')->insert([
+            //             'date' => $it_date,
+            //             'facebook' =>  0,
+            //             'instagram' =>  0,
+            //             'tiktok' =>  0,
+            //             'other' =>  0,
+            //           ]);
+            //     }else{
+            //         DB::table('overalls')->insert([
+            //             'date' => $it_date,
+            //             'facebook' =>  $latest_row->facebook,
+            //             'instagram' =>  $latest_row->instagram,
+            //             'tiktok' =>  $latest_row->tiktok,
+            //             'other' =>  $latest_row->other,
+            //           ]);
+            //     }
+            // }else{
+            //     $latest_row = $it_date_row;
+            // }
+
+            $it_date = Carbon::parse($it_date)->addDay()->format("Y-m-d");
+            // $it_date_row = DB::table('overalls')->where('date', $it_date)->first();
         }
+
+
+        // while($prev_date != Carbon::parse($initial_date)->subDay()->format("Y-m-d")){
+
+        //   if($prev_date_row == null){
+        //     DB::table('overalls')->insert([
+        //       'date' => $prev_date_carbon->format("Y-m-d"),
+        //       'facebook' =>  0,
+        //       'instagram' =>  0,
+        //       'tiktok' =>  0,
+        //       'other' =>  0,
+        //     ]);
+        //   }
+        //   $prev_date_carbon = $prev_date_carbon->subDays(1);
+        //   $prev_date = $prev_date_carbon->format("Y-m-d");
+        //   $prev_date_row = DB::table('overalls')->where('date', $prev_date)->first();
+
+        // }
 
     }
     /**
