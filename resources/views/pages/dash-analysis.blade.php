@@ -481,15 +481,23 @@
             tickPlacement: 'on',
         },
         yaxis: {
-            tickAmount: 10,
+            // tickAmount: 10,
+            // labels: {
+            //     style: {
+            //         color: [$primary_light, $warning_light, $danger_light, $yel],
+            //     },
+            //     formatter: function(val) {
+            //         return val > 999 ? (val / 1000).toFixed(1) + 'k' : val;
+            //     }
+            // }
             labels: {
-                style: {
-                    color: [$primary_light, $warning_light, $danger_light, $yel],
-                },
-                formatter: function(val) {
-                    return val > 999 ? (val / 1000).toFixed(1) + 'k' : val;
-                }
-            }
+              formatter: function(val) {
+                return val.toFixed(0);
+              }
+            },
+            forceNiceScale: true,
+            decimalsInFloat: 0,
+            
         },
         tooltip: {
             x: {
