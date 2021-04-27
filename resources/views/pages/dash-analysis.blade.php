@@ -189,7 +189,7 @@
 
                                     <div class="form-label-group">
                                         <label for="inputName">From</label>From
-                                        <input type='date' name="from" value="2020-08-22" class='form-control' value="{{$from}}">
+                                        <input type='date' name="from" class='form-control' value="{{$from}}">
                                     </div>
                                     <div class="form-label-group">
                                         <label for="inputBranch">To</label>To

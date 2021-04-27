@@ -34,20 +34,27 @@ class DashboardController extends Controller
         $OthTotal=0;
 
         if($from_overall != null && $to_overall != null){
-            $FbTotal = $from_overall->facebook - $to_overall->facebook;
-            $TikTotal = $from_overall->tiktok - $to_overall->tiktok;
-            $InstTotal = $from_overall->instagram - $to_overall->instagram;
-            $OthTotal = $from_overall->other - $to_overall->other;
-        }elseif($from_overall === null && $to_overall != null){
+            $FbTotal = $to_overall->facebook - $from_overall->facebook;
+            $TikTotal = $to_overall->tiktok - $from_overall->tiktok;
+            $InstTotal = $to_overall->instagram - $from_overall->instagram;
+            $OthTotal = $to_overall->other - $from_overall->other;
+        }elseif($from_overall == null && $to_overall != null){
             $FbTotal=$to_overall->facebook;
             $TikTotal=$to_overall->tiktok;
             $InstTotal=$to_overall->instagram;
             $OthTotal=$to_overall->other;
-        }elseif($from_overall != null && $to_overall === null){
-            $FbTotal=$from_overall->facebook;
-            $TikTotal=$from_overall->tiktok;
-            $InstTotal=$from_overall->instagram;
-            $OthTotal=$from_overall->other;
+        }elseif($from_overall != null && $to_overall == null){
+            $overall_collection = Overall::all();
+            $overall_sorted_collection = $overall_collection->sortBy('date');
+       
+            $latest_date_overall = $overall_sorted_collection->last();
+
+
+
+            $FbTotal=$latest_date_overall->facebook;
+            $TikTotal=$latest_date_overall->tiktok;
+            $InstTotal=$latest_date_overall->instagram;
+            $OthTotal=$latest_date_overall->other;
         }else{
             $all_overAll = Overall::all();
             $max_overall_date = $from_carbon;

@@ -10,6 +10,7 @@ use App\Survey;
 use App\Overall;
 
 use DB;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class AuthController extends Controller
@@ -61,20 +62,39 @@ class AuthController extends Controller
 
 
     private function redirectToSuperAdminDashboard(){
-        $overall = DB::table('overalls')->latest()->first();
-        // Overall::latest();
-       $FbTotal=0;
-       $TikTotal=0;
-       $InstTotal=0;
-       $OthTotal=0;
-       if($overall != null){
-         $FbTotal=$overall->facebook;
-         $TikTotal=$overall->tiktok;
-         $InstTotal=$overall->instagram;
-         $OthTotal=$overall->other;
-       }
-       $overall_collection = Overall::all();
+
+        $FbTotal=0;
+        $TikTotal=0;
+        $InstTotal=0;
+        $OthTotal=0;
+
+        $from = Carbon::parse("2021-1-1")->format("Y-m-d");
+       $to = Carbon::parse("2021-2-1")->format("Y-m-d");
+
+
+       $dates = array();
+       $facebookDayByDay = array();
+       $instagramDayByDay = array();
+       $tiktokDayByDay = array();
+       $otherDayByDay =  array();
+       ;
+
+
+        $overall_collection = Overall::all();
        $overall_sorted_collection = $overall_collection->sortBy('date');
+       $overall_size = $overall_collection->count();
+       if($overall_size > 0){
+        $latest_date_overall = $overall_sorted_collection->last();
+        // $overall = DB::table('overalls')->latest()->first();
+        // Overall::latest();
+        
+        //  dd($overall_sorted_collection->last());
+         $FbTotal=$latest_date_overall->facebook;
+         $TikTotal=$latest_date_overall->tiktok;
+         $InstTotal=$latest_date_overall->instagram;
+         $OthTotal=$latest_date_overall->other;
+        
+       
 
        $dates = $overall_sorted_collection->pluck('date');
        $facebookDayByDay = $overall_sorted_collection->pluck('facebook');
@@ -90,11 +110,12 @@ class AuthController extends Controller
        }
 
 
-       $from = Carbon::parse("2021-1-1")->format("Y-m-d");
-       $to = Carbon::parse("2021-2-1")->format("Y-m-d");
+       
 
 
-       return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
+
+    }
+    return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
     ,'instagramDayByDay','tiktokDayByDay','otherDayByDay','from','to'));
 
     }
@@ -436,6 +457,8 @@ class AuthController extends Controller
                 $overall->save();
             }
             
+
+
             $it_date = Carbon::parse($it_date)->addDay()->format("Y-m-d");
             // $it_date_row = DB::table('overalls')->where('date', $it_date)->first();
         }
