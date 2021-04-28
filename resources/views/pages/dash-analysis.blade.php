@@ -255,8 +255,8 @@
 <form id='myForm' name="resultForm" action="{{ route('saveData') }}" method="post">
 
     <input Hidden name="fb" type="text" class="form-control" id="fbBtn2" value='<?php echo $FbTotal; ?>' placeholder="">
-    <input Hidden name="ig" type="text" class="form-control" id="IgBtn2" value='<?php echo $TikTotal; ?>' placeholder="">
-    <input Hidden name="tik" type="text" class="form-control" id="TikBtn2" value='<?php echo $InstTotal; ?>' placeholder="">
+    <input Hidden name="ig" type="text" class="form-control" id="IgBtn2" value='<?php echo $InstTotal; ?>' placeholder="">
+    <input Hidden name="tik" type="text" class="form-control" id="TikBtn2" value='<?php echo $TikTotal; ?>' placeholder="">
     <input Hidden name="oth" type="text" class="form-control" id="OthBtn2" value='<?php echo $OthTotal; ?>' placeholder="">
 
     <!-- <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='<?php echo $OthTotal; ?>'placeholder="" >
@@ -509,13 +509,14 @@
                 data: facebookDayByDay
             },
             {
-                name: "TikTok",
-                data: tiktokDayByDay
-            },
-            {
                 name: "Instagram",
                 data: instagramDayByDay
             },
+            {
+                name: "TikTok",
+                data: tiktokDayByDay
+            },
+          
 
             {
                 name: "Other",
