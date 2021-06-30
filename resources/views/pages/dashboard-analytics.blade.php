@@ -42,45 +42,32 @@
     
 <center>
 
-<!--*
-<img class="round" src="{{asset('images/portrait/small/logomet.png') }}" alt="avatar" height="70" width="180" />
+
+<img class="round" src="{{asset('images/portrait/small/logomet2.png') }}" alt="avatar" height="80"  />
+<h2 style="font-size:3rem;text-align: center;";>תודה שקנית אצלנו <br> אנא סמן איפה ראית אותנו؟</h2>
 
 
-
-<div class="card" style="height:200px; width:800px; border-width: 5px; border-color: #706f6f; border-style: solid; border-radius: 5%;">
-          <div class="card-content  show" aria-expanded="true">
-              <div class="card-body" style="padding:1rem">
-              <h1 style="font-size:4rem; text-align: right;";><u>עזור לנו להתמקד </u></h1>
-
-   
-
-
-    <h2 style="font-size:3rem;text-align: center;";>תודה שקנית אצלנו <br> חשוב לנו לדעת איפה ראית אותנו ؟؟</h2>
-    
-        </div>
-          </div>
-      </div>
    
     </center>
--->
+
 <br>
-<img class="" src="{{asset('images/portrait/small/arabicheader.PNG') }}" height="220" width="" />
+<!-- <img class="" src="{{asset('images/portrait/small/arabicheader.PNG') }}" height="220" width="" /> -->
 <br>
 <br>
 
 
 
-<div class="container" style="width:700px;"; >  
+<div class="container " style="width:900px; vertical-align: middle" >  
 
 
 
 
 
 
-<div class="row" style="";>
+<div class="row" style="padding: 0;margin: 0;";>
   
   
-  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content  show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
@@ -97,7 +84,7 @@
   
   
   
-  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
         <div class="card" style="border-width: 0px;border-color: #706f6f;border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
@@ -111,7 +98,7 @@
   
   
   
-  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
@@ -124,14 +111,28 @@
   </div>
   
   
-  
-  
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="margin-left:0px;";>
+  <!-- <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;"; class="" src="{{asset('images/portrait/small/oth4.PNG') }}" alt="avatar" height="75" width="75" /></span></span><br><br><b></b></button>
+                <button  id="OthBtn2" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif;"; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/oth.PNG') }}" alt="avatar" height="75" /></span></span><br><br><b></b></button>
+                </center>
+          </div>
+            </div>
+        </div>
+  </div> -->
+
+
+
+
+  
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:0px;";>
+        <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
+            <div class="card-content collapse show" aria-expanded="true">
+                <div class="card-body" style="padding:0rem">
+                  <center>
+                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif;"; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/oth.PNG') }}" alt="avatar" height="75" /></span></span><br><br><b></b></button>
                 </center>
           </div>
             </div>
@@ -139,6 +140,9 @@
   </div>
   
   
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:10 px;";>
+  <img style="margin-left:15px;margin-top:-30px;margin-right:15px;"; class="" src="{{asset('images/portrait/small/askman.png') }}" alt="avatar" height="250" />
+  </div>
   
   
   
@@ -172,6 +176,7 @@
 </button>
 </center>
 
+<center>
 
 <form id='myForm' name="resultForm" action="{{ route('saveData') }}" method="post">
 
@@ -197,7 +202,7 @@
 
 </form>
 
-
+</center>
   @endsection
 
   <script>
