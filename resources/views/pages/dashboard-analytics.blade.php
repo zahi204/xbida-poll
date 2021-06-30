@@ -43,7 +43,7 @@
 <center>
 
 
-<img class="round" src="{{asset('images/portrait/small/logomet2.png') }}" alt="avatar" height="80"  />
+<img class="round" src="{{asset('images/portrait/small/logomet2.PNG') }}" alt="avatar" height="80"  />
 <h2 style="font-size:3rem;text-align: center;";>תודה שקנית אצלנו <br> אנא סמן איפה ראית אותנו؟</h2>
 
 
@@ -132,7 +132,7 @@
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif;"; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/oth.PNG') }}" alt="avatar" height="75" /></span></span><br><br><b></b></button>
+                <button  id="OthBtn" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif;"; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/oth.png') }}" alt="avatar" height="75" /></span></span><br><br><b></b></button>
                 </center>
           </div>
             </div>
