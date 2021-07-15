@@ -187,11 +187,13 @@ class AuthController extends Controller
 
     public function saveSurvey(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'fb' => 'required|string',
             'ig' => 'required|string',
             'tik' => 'required|string',
             'oth' => 'required|string',
+            'friend' => 'required|string',
             'company_id'=> 'required|string',
             'branch_id'=> 'required|string',
 
@@ -208,6 +210,7 @@ class AuthController extends Controller
             'facebook' => $request->fb,
             'instagram' => $request->ig,
             'tiktok' => $request->tik,
+            'friend' => $request->friend,
             'other' => $request->oth
 
         ]);
@@ -248,27 +251,33 @@ class AuthController extends Controller
             $facebook = $current_date_row->facebook;
             $instagram = $current_date_row->instagram;
             $tiktok = $current_date_row->tiktok;
+            $friend = $current_date_row->friend;
             $other = $current_date_row->other;
 
             $facebook=intval($facebook);
             $instagram=intval($instagram);
             $tiktok=intval($tiktok);
+            $friend=intval($friend);
+
             $other=intval($other);
 
             $facebook2 = $last_row->facebook;
             $instagram2 = $last_row->instagram;
             $tiktok2 = $last_row->tiktok;
+            $friend2 = $last_row->friend;
             $other2 = $last_row->other;
 
             $facebook2=intval($facebook2);
             $instagram2=intval($instagram2);
             $tiktok2=intval($tiktok2);
+            $friend2=intval($friend2);
             $other2=intval($other2);
 
 
             $facebook2 = $facebook2+$facebook;
             $instagram2 = $instagram2+$instagram;
             $tiktok2 = $tiktok2+$tiktok;
+            $friend2 = $friend2+$friend;
             $other2 =$other2+$other;
 
 
@@ -276,6 +285,7 @@ class AuthController extends Controller
             DB::table('overalls')->where('date', $date)->update(['facebook' => $facebook2]);
             DB::table('overalls')->where('date', $date)->update(['instagram' => $instagram2]);
             DB::table('overalls')->where('date', $date)->update(['tiktok' => $tiktok2]);
+            DB::table('overalls')->where('date', $date)->update(['friend' => $friend2]);
             DB::table('overalls')->where('date', $date)->update(['other' => $other2]);
 
 
@@ -302,6 +312,7 @@ class AuthController extends Controller
                 SUM(facebook) AS fb,
                 SUM(instagram) AS ins,
                 SUM(tiktok) AS tik,
+                SUM(friend) AS friend,
                 SUM(other) AS oth
             ')
             ->where('created_at', '<',$date2 )
@@ -312,6 +323,7 @@ class AuthController extends Controller
                 'facebook' => intval($new_overall[0]->fb),
                 'instagram' => intval($new_overall[0]->ins),
                 'tiktok' => intval($new_overall[0]->tik),
+                'friend' => intval($new_overall[0]->friend),
                 'other' => intval($new_overall[0]->oth)
             ]);
 
@@ -440,6 +452,7 @@ class AuthController extends Controller
                     SUM(facebook) AS fb,
                     SUM(instagram) AS ins,
                     SUM(tiktok) AS tik,
+                    SUM(friend) AS friend,
                     SUM(other) AS oth
                 ')
                 ->where('created_at', '<', Carbon::parse($it_date)->addDay())
@@ -451,6 +464,8 @@ class AuthController extends Controller
                     'facebook' => (intval($new_overall[0]->fb) == null)? 0 : $new_overall[0]->fb,
                     'instagram' => (intval($new_overall[0]->ins) == null)? 0 : $new_overall[0]->ins,
                     'tiktok' => (intval($new_overall[0]->tik) == null)? 0 : $new_overall[0]->tik,
+                    'friend' => (intval($new_overall[0]->friend) == null)? 0 : $new_overall[0]->friend,
+
                     'other' => (intval($new_overall[0]->oth) == null)? 0 : $new_overall[0]->oth,
                 ]);
     

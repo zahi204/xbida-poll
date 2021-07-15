@@ -111,17 +111,21 @@
   </div>
   
   
-  <!-- <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" style="margin-left:3 px;";>
         <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button  id="OthBtn2" onClick="switchColor('OthBtn','OthBtn2')" style="border-width: 0px; border-color: #f6f5f5; border-style: outset;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif;"; class="btn  btn-inline"><span><img style="margin-left:-15px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/oth.PNG') }}" alt="avatar" height="75" /></span></span><br><br><b></b></button>
+                <button  id="friendBtn" onClick="switchColor('friendBtn','friendBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
+                <span><img style="margin-left:3px;margin-top:25px;margin-right:-15px;"; class="" src="{{asset('images/portrait/small/friends.png') }}" alt="avatar" height="75" />                <br><br>
+                <img style="margin-left:-13px;"; class="round" src="{{asset('images/portrait/small/friendtext.png') }}" alt="avatar" height="40" width="100" />
+                </span></span>
+                </button>
                 </center>
           </div>
             </div>
         </div>
-  </div> -->
+  </div>
 
 
 
@@ -183,6 +187,7 @@
 <input Hidden name="fb" type="text" class="form-control" id="fbBtn2"  value='0' placeholder=""  >
 <input Hidden name="ig" type="text" class="form-control" id="IgBtn2"  value='0' placeholder="" >
 <input Hidden name="tik" type="text" class="form-control" id="TikBtn2"  value='0' placeholder="" >
+<input Hidden name="friend" type="text" class="form-control" id="friendBtn2"  value='0'placeholder="" >
 <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='0'placeholder="" >
 <input Hidden name="company_id" type="text" class="form-control" id=""  value="<?php echo $company_id; ?>" placeholder="" >
 <input Hidden name="branch_id" type="text" class="form-control" id=""  value='<?php echo $branch_id; ?>' placeholder="" >
@@ -193,7 +198,7 @@
 
 
 <!-- Modal -->
-<div style=" margin-top:150px; margin-right:200px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div style=" margin-top:150px; margin-right:20px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
   <img class="round" src="{{asset('images/portrait/small/arabicthanks.PNG') }}" alt="avatar" height="250" width="550" />
     
@@ -231,7 +236,7 @@ function switchColor(btnColor,btnRes){
       var btnFace = document.getElementById('fbBtn');
       var btnInsta = document.getElementById('IgBtn');
       var btnTik = document.getElementById('TikBtn');
-
+      var btnFriend = document.getElementById('friendBtn');
 
       
         if(value==0){
@@ -244,14 +249,15 @@ function switchColor(btnColor,btnRes){
         btnC.style.background = 'white';
         btnR.value='0'; 
 
-        var btnFaceVal = parseInt(document.getElementById('fbBtn2').value);
+      var btnFaceVal = parseInt(document.getElementById('fbBtn2').value);
       var btnInstaVal = parseInt(document.getElementById('IgBtn2').value);
       var btnTikVal = parseInt(document.getElementById('TikBtn2').value);
       var btnOthVal = parseInt(document.getElementById('OthBtn2').value);
 
+      var btnFriendVal = parseInt(document.getElementById('friendBtn2').value);
 
 
-      if(btnFaceVal==1 || btnInstaVal==1 || btnTikVal==1 || btnOthVal==1){
+      if(btnFaceVal==1 || btnInstaVal==1 || btnTikVal==1 || btnOthVal==1 || btnFriendVal==1){
         document.getElementById('subbtn').style.visibility = "visible";
 
           }else{

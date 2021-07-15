@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Overall extends Model
 {
 
-    protected $fillable = ['date','facebook','instagram','tiktok','other'];
+    protected $fillable = ['date','facebook','instagram','tiktok','ffiend','other'];
     
 
     public function getCarbonDate(){
