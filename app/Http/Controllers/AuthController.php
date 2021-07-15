@@ -66,6 +66,7 @@ class AuthController extends Controller
         $FbTotal=0;
         $TikTotal=0;
         $InstTotal=0;
+        $FriendTotal=0;
         $OthTotal=0;
 
         $from = Carbon::parse("2021-1-1")->format("Y-m-d");
@@ -76,14 +77,15 @@ class AuthController extends Controller
        $facebookDayByDay = array();
        $instagramDayByDay = array();
        $tiktokDayByDay = array();
+       $friendDayByDay =  array();
        $otherDayByDay =  array();
        ;
 
 
         $overall_collection = Overall::all();
-       $overall_sorted_collection = $overall_collection->sortBy('date');
-       $overall_size = $overall_collection->count();
-       if($overall_size > 0){
+        $overall_sorted_collection = $overall_collection->sortBy('date');
+        $overall_size = $overall_collection->count();
+        if($overall_size > 0){
         $latest_date_overall = $overall_sorted_collection->last();
         // $overall = DB::table('overalls')->latest()->first();
         // Overall::latest();
@@ -92,6 +94,7 @@ class AuthController extends Controller
          $FbTotal=$latest_date_overall->facebook;
          $TikTotal=$latest_date_overall->tiktok;
          $InstTotal=$latest_date_overall->instagram;
+         $FriendTotal = $latest_date_overall->friend;
          $OthTotal=$latest_date_overall->other;
        }
        
@@ -100,12 +103,15 @@ class AuthController extends Controller
        $facebookDayByDay = $overall_sorted_collection->pluck('facebook');
        $instagramDayByDay = $overall_sorted_collection->pluck('instagram');
        $tiktokDayByDay = $overall_sorted_collection->pluck('tiktok');
+       $friendDayByDay = $overall_sorted_collection->pluck('friend');
        $otherDayByDay = $overall_sorted_collection->pluck('other');
 
        for($i=$dates->count()-1 ; $i > 0  ; $i--){
         $facebookDayByDay[$i] = $facebookDayByDay[$i] - $facebookDayByDay[$i-1];
         $instagramDayByDay[$i] = $instagramDayByDay[$i] - $instagramDayByDay[$i-1];
         $tiktokDayByDay[$i] = $tiktokDayByDay[$i] - $tiktokDayByDay[$i-1];
+        $friendDayByDay[$i] = $friendDayByDay[$i] - $friendDayByDay[$i-1];
+
         $otherDayByDay[$i] = $otherDayByDay[$i] - $otherDayByDay[$i-1];
        }
 
@@ -115,8 +121,8 @@ class AuthController extends Controller
 
 
     
-    return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','OthTotal','dates','facebookDayByDay'
-    ,'instagramDayByDay','tiktokDayByDay','otherDayByDay','from','to'));
+    return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','FriendTotal','OthTotal','dates','facebookDayByDay'
+    ,'instagramDayByDay','tiktokDayByDay','friendDayByDay','otherDayByDay','from','to'));
 
     }
 

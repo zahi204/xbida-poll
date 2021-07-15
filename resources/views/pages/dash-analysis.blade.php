@@ -110,6 +110,27 @@
         </div>
       </div>
     </div>
+
+    
+    <div class="col-xl-2 col-md-4 col-sm-6">
+      <div class="card text-center">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="avatar bg-rgba-success p-50 m-0 mb-1">
+              <div class="avatar-content">
+                <!-- <i class="feather feather-UsersIcon text-success font-medium-5"></i> -->
+                <img class="" src="{{asset('images/portrait/small/person.png') }}" alt="avatar" height="30" width="30" />
+
+              </div>
+            </div>
+            <h2 class="text-bold-700">{{$FriendTotal}}</h2>
+            <p class="mb-0 line-ellipsis">דרך חבר</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="col-xl-2 col-md-4 col-sm-6">
       <div class="card text-center">
         <div class="card-content">
@@ -120,12 +141,12 @@
               </div>
             </div>
             <h2 class="text-bold-700">{{$OthTotal}}</h2>
-            <p class="mb-0 line-ellipsis">Other</p>
+            <p class="mb-0 line-ellipsis">אחר</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-xl-4 col-md-8 col-sm-12">
+    <div class="col-xl-2 col-md-4 col-sm-6">
       <div class="card text-center">
         <div class="card-content">
           <div class="card-body">
@@ -135,11 +156,12 @@
               </div>
             </div>
             <h2 class="text-bold-700">{{$OthTotal + $InstTotal + $TikTotal + $FbTotal}}</h2>
-            <p class="mb-0 line-ellipsis">Total</p>
+            <p class="mb-0 line-ellipsis">סך הכך</p>
           </div>
         </div>
       </div>
     </div>
+
 
   </div>
 
@@ -258,6 +280,8 @@
   <input Hidden name="fb" type="text" class="form-control" id="fbBtn2" value='<?php echo $FbTotal; ?>' placeholder="">
   <input Hidden name="ig" type="text" class="form-control" id="IgBtn2" value='<?php echo $InstTotal; ?>' placeholder="">
   <input Hidden name="tik" type="text" class="form-control" id="TikBtn2" value='<?php echo $TikTotal; ?>' placeholder="">
+  <input Hidden name="friend" type="text" class="form-control" id="FriendBtn2" value='<?php echo $FriendTotal; ?>' placeholder="">
+
   <input Hidden name="oth" type="text" class="form-control" id="OthBtn2" value='<?php echo $OthTotal; ?>' placeholder="">
 
   <!-- <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='<?php echo $OthTotal; ?>'placeholder="" >
@@ -289,14 +313,18 @@
   var btnFaceVal = parseInt(document.getElementById('fbBtn2').value);
   var btnInstaVal = parseInt(document.getElementById('IgBtn2').value);
   var btnTikVal = parseInt(document.getElementById('TikBtn2').value);
+  var btnFriendVal = parseInt(document.getElementById('FriendBtn2').value);
+
   var btnOthVal = parseInt(document.getElementById('OthBtn2').value);
 
 
-  var total = btnFaceVal + btnInstaVal + btnTikVal + btnOthVal;
+  var total = btnFaceVal + btnInstaVal + btnTikVal + btnOthVal + btnFriendVal;
 
   var fbperc = (btnFaceVal / total) * 100;
   var instperc = (btnInstaVal / total) * 100;
   var tikperc = (btnTikVal / total) * 100;
+  var friendperc = (btnFriendVal / total) * 100;
+
   var othperc = (btnOthVal / total) * 100;
 
 
@@ -313,7 +341,7 @@
   var $strok_color = '#b9c3cd';
   var $label_color = '#e7eef7';
   var $purple = '#df87f2';
-  var $white = '#fff';
+  var $white = '#000000';
   var $yel = '#FFFF00';
 
 
@@ -322,6 +350,7 @@
       fb: $primary, //'#ffe700', // facebook
       inst: $danger, //'#00d4bd', //tiktok
       tik: $warning, //'#826bf8', // instagram
+      friend: $white,
       oth: $yel, //'#2b9bf4', // other
     },
   };
@@ -339,7 +368,7 @@
       position: 'bottom'
     },
     colors: [chartColors.donut.fb, chartColors.donut.inst,
-      chartColors.donut.tik, chartColors.donut.oth
+      chartColors.donut.tik,chartColors.donut.friend, chartColors.donut.oth
     ],
     fill: {
       type: 'gradient',
@@ -348,7 +377,7 @@
         shade: 'dark',
         type: 'vertical',
         shadeIntensity: 0.5,
-        gradientToColors: [$primary_light, $danger_light, $warning_light, $yel],
+        gradientToColors: [$primary_light, $danger_light, $warning_light,$white, $yel],
         inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,
@@ -388,8 +417,8 @@
         }
       }
     },
-    series: [~~fbperc, ~~instperc, ~~tikperc, ~~othperc],
-    labels: ['Facebook', 'Instagram', 'Tiktok', 'Other'],
+    series: [~~fbperc, ~~instperc, ~~tikperc,~~friendperc, ~~othperc],
+    labels: ['Facebook', 'Instagram', 'Tiktok','Friends', 'Other'],
 
   }
 
@@ -407,6 +436,8 @@
   var facebookDayByDay = <?php echo $facebookDayByDay; ?>;
   var instagramDayByDay = <?php echo $instagramDayByDay; ?>;
   var tiktokDayByDay = <?php echo $tiktokDayByDay; ?>;
+  var friendDayByDay = <?php echo $friendDayByDay; ?>;
+
   var otherDayByDay = <?php echo $otherDayByDay; ?>;
 
   const dynamicWidth = dates.length * 50;
@@ -416,6 +447,8 @@
   facebookDayByDay.reverse();
   instagramDayByDay.reverse();
   tiktokDayByDay.reverse();
+  friendDayByDay.reverse();
+
   otherDayByDay.reverse();
   // Revenue  Chart
   // -----------------------------
@@ -440,8 +473,8 @@
 
     stroke: {
       curve: 'smooth',
-      dashArray: [0, 0, 0, 0],
-      width: [4, 4, 4, 4],
+      dashArray: [0, 0, 0, 0,0],
+      width: [4, 4, 4, 4,4],
     },
     grid: {
       borderColor: $label_color,
@@ -450,7 +483,7 @@
       show: false,
     },
     colors: [chartColors.donut.fb, chartColors.donut.inst,
-      chartColors.donut.tik, chartColors.donut.oth
+      chartColors.donut.tik,chartColors.donut.friend, chartColors.donut.oth
     ],
 
     fill: {
@@ -458,7 +491,7 @@
       gradient: {
         shade: 'dark',
         inverseColors: false,
-        gradientToColors: [$primary_light, $danger_light, $warning_light, $yel],
+        gradientToColors: [$primary_light, $danger_light, $warning_light,$white, $yel],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
@@ -525,6 +558,10 @@
         data: tiktokDayByDay
       },
 
+      {
+        name: "Friend",
+        data: friendDayByDay
+      },
 
       {
         name: "Other",
@@ -561,8 +598,8 @@
         show: false
       }
     },
-    labels: ['Facebook', 'Instagram', 'Tiktok', 'Other'],
-    series: [~~fbperc, ~~instperc, ~~tikperc, ~~othperc],
+    labels: ['Facebook', 'Instagram', 'Tiktok','Friends', 'Other'],
+    series: [~~fbperc, ~~instperc, ~~tikperc,~~friendperc, ~~othperc],
     dataLabels: {
       enabled: true
     },
@@ -576,11 +613,11 @@
     stroke: {
       width: 4
     },
-    colors: [$primary, $warning, $danger, $info],
+    colors: [$primary, $warning, $danger,$white, $info],
     fill: {
       type: 'gradient',
       gradient: {
-        gradientToColors: [$primary_light, $warning_light, $danger_light, $yel]
+        gradientToColors: [$primary_light, $warning_light, $danger_light,$white, $yel]
       }
     }
   }
@@ -609,12 +646,14 @@
         show: true,
         position: 'bottom'
       },
-      labels: ['Facebook', 'Instagram', 'Tiktok', 'Other'],
-      series: [btnFaceVal, btnInstaVal, btnTikVal, btnOthVal],
+      labels: ['Facebook', 'Instagram', 'Tiktok','Friend', 'Other'],
+      series: [btnFaceVal, btnInstaVal, btnTikVal,btnFriendVal, btnOthVal],
       colors: [
         chartColors.donut.fb,
         chartColors.donut.inst,
         chartColors.donut.tik,
+        chartColors.donut.friend,
+
         chartColors.donut.oth
       ],
       dataLabels: {
