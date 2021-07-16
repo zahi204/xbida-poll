@@ -8,7 +8,8 @@ use Carbon\Carbon;
 use App\User;
 use App\Survey;
 use App\Overall;
-
+use App\Overall2;
+use App\Survey2;
 use DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB as FacadesDB;
@@ -427,7 +428,8 @@ class AuthController extends Controller
 
     $this->addPreviousDatesToOverallTable($datex);
 
-    return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
+    // return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
+    return view('/pages/question2', compact('company_id', 'branch_id','time'));
 
 
 }
@@ -512,4 +514,263 @@ class AuthController extends Controller
     {
       return response()->json($request->user());
     }
+
+
+    //question 2 saving 
+    public function saveSurvey2(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'yes' => 'required|string',
+            'no' => 'required|string',
+            'company_id'=> 'required|string',
+            'branch_id'=> 'required|string',
+
+        ]);
+
+
+        $company_id=$request->company_id;
+        $branch_id=$request->branch_id;
+
+        $survey = new Survey2([
+
+            'company_id' => $request->company_id,
+            'branch_id' => $request->branch_id,
+            'yes' => $request->yes,
+            'no' => $request->no
+        ]);
+
+        $survey->save();
+
+
+
+
+        ////////////////////////////////////
+
+
+
+        $last_row = DB::table('survey2s')->latest()->first();
+        $time = $last_row->created_at;
+        $datex = Carbon::parse($time);
+        $date = $datex->format("Y-m-d");
+
+        ////////////////////////////////////
+
+
+        $current_date_row = DB::table('overall2s')->where('date', $date)->first();
+        //$rowsCount = $current_date_row->count();
+
+
+
+
+         /*
+            if the current date exist on the table
+            we take it -> extract the old values ->
+            add the new values -> update the row
+            */
+
+
+        if(!is_null($current_date_row)){
+
+
+            $yes = $current_date_row->yes;
+            $no = $current_date_row->no;
+         
+
+            $yes=intval($yes);
+            $no=intval($no);
+           
+            $yes2 = $last_row->yes;
+            $no2 = $last_row->no;
+          
+            $yes2=intval($yes2);
+            $no2=intval($no2);
+         
+
+            $yes2 = $yes2+$yes;
+            $no2 = $no2+$no;
+           
+
+
+
+            DB::table('overall2s')->where('date', $date)->update(['yes' => $yes2]);
+            DB::table('overall2s')->where('date', $date)->update(['no' => $no2]);
+
+
+
+
+             /*
+            if the current date dose not exist
+             we may be two cases:
+                1-it is the first record at all
+                2-it is the first record at this day
+
+
+            if (1):
+                we will git the values and add them to the table
+            if (2):
+                we will get the previous day overall and set them as the initial
+            */
+        }else{
+
+
+            $date2 = Carbon::parse($date)->addDay();
+            // $last_row_overall = $this->getLatestOverAllDate(date);
+            $new_overall = DB::table('survey2s')
+            ->selectRaw('
+                SUM(yes) AS yesSum,
+                SUM(no) AS noSum
+            ')
+            ->where('created_at', '<',$date2 )
+            ->get();
+            
+            $overall = new Overall2([
+                'date' => $date,
+                'yes' => intval($new_overall[0]->yesSum),
+                'no' => intval($new_overall[0]->noSum)
+            ]);
+
+            $overall->save();
+
+
+
+            //$rowsCountOverall = $last_row_overall->count();
+
+        //     if(is_null($last_row_overall)){
+
+        //         $facebook2 = $last_row->facebook;
+        //         $instagram2 = $last_row->instagram;
+        //         $tiktok2 = $last_row->tiktok;
+        //         $other2 = $last_row->other;
+
+        //         $facebook2=intval($facebook2);
+        //         $instagram2=intval($instagram2);
+        //         $tiktok2=intval($tiktok2);
+        //         $other2=intval($other2);
+
+
+
+
+
+        //   $overall = new Overall([
+
+        //         'date' => $date,
+        //         'facebook' => $facebook2,
+        //         'instagram' => $instagram2,
+        //         'tiktok' => $tiktok2,
+        //         'other' => $other2
+
+
+        //     ]);
+
+        //     $overall->save();
+
+
+        //   }
+        // else{
+
+
+
+        //     $facebook = $last_row_overall->facebook;
+        //     $instagram = $last_row_overall->instagram;
+        //     $tiktok = $last_row_overall->tiktok;
+        //     $other = $last_row_overall->other;
+
+
+        //     $facebook2 = $last_row->facebook;
+        //     $instagram2 = $last_row->instagram;
+        //     $tiktok2 = $last_row->tiktok;
+        //     $other2 = $last_row->other;
+
+        //     $facebook2=intval($facebook2);
+        //     $instagram2=intval($instagram2);
+        //     $tiktok2=intval($tiktok2);
+        //     $other2=intval($other2);
+
+
+        //     $facebook2 = $facebook2+$facebook;
+        //     $instagram2 = $instagram2+$instagram;
+        //     $tiktok2 = $tiktok2+$tiktok;
+        //     $other2 =$other2+$other;
+
+
+
+
+        //     $overall = new Overall([
+
+        //         'date' => $date,
+        //         'facebook' => $facebook2,
+        //         'instagram' => $instagram2,
+        //         'tiktok' => $tiktok2,
+        //         'other' => $other2
+
+
+        //     ]);
+
+        //     $overall->save();
+
+
+
+
+        // }
+
+
+
+
+
+    }
+
+
+
+    $this->addPreviousDatesToOverall2Table($datex);
+
+    return view('/pages/dashboard-analytics', compact('company_id', 'branch_id','time'));
+
+
+}
+
+
+
+/**
+     * add unexisted previous dates to the overall table as zero values
+     *
+     */
+
+    private function addPreviousDatesToOverall2Table($current_date){
+
+        $initial_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
+        
+        $it_date_row = DB::table('overall2s')->where('date', $initial_date)->first();
+        $it_date = Carbon::createMidnightDate(2020, 1, 1)->format("Y-m-d");
+        $latest_row = ($it_date_row == null)? null :$it_date_row; 
+
+        while(Carbon::parse($it_date)->diffInDays(Carbon::parse($current_date)) != 0 ){
+            $current_date_row = DB::table('overall2s')->where('date', $it_date)->first();
+            if($current_date_row == null){
+                $new_overall = DB::table('survey2s')
+                ->selectRaw('
+                    SUM(yes) AS yes,
+                    SUM(no) AS no
+                ')
+                ->where('created_at', '<', Carbon::parse($it_date)->addDay())
+                ->get();
+                
+    
+                $overall = new Overall2([
+                    'date' => $it_date,
+                    'yes' => (intval($new_overall[0]->yes) == null)? 0 : $new_overall[0]->yes,
+                    'no' => (intval($new_overall[0]->no) == null)? 0 : $new_overall[0]->no,
+                ]);
+    
+                $overall->save();
+            }
+            
+
+
+            $it_date = Carbon::parse($it_date)->addDay()->format("Y-m-d");
+        }
+
+    }
+
+
 }

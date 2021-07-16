@@ -45,17 +45,14 @@ Route::get('/', 'AuthenticationController@login');
 // Route Dashboards
 Route::get('/dashboard-analytics', 'DashboardController@dashboardAnalytics');
 Route::get('/dash-analysis', 'DashboardController@dashboardAnalysis');
-Route::get('/thanks-page', 'DashboardController@thanks');
 
 // Route Authentication Pages
 Route::get('/auth-login', 'AuthenticationController@login');
 Route::get('/auth-register', 'AuthenticationController@register');
 Route::get('/auth-forgot-password', 'AuthenticationController@forgot_password');
 Route::get('/auth-reset-password', 'AuthenticationController@reset_password');
-Route::get('/auth-lock-screen', 'AuthenticationController@lock_screen');
 
 Auth::routes();
 
-Route::post('/login/validate', 'Auth\LoginController@validate_api');
 Route::post('/inRangeData', 'DashboardController@getDataInRange')->name('analytics.by.range');
 

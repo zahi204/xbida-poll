@@ -175,7 +175,7 @@
 
   <center>
 <!-- Button trigger modal -->
-<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn "  data-toggle="modal" data-target="#exampleModal" >
+<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn "  >
 <img class="" src="{{asset('images/portrait/small/arabicsend.PNG') }}" alt="avatar" height="60" width="123" />
 </button>
 </center>
@@ -198,12 +198,12 @@
 
 
 <!-- Modal -->
-<div style=" margin-top:150px; margin-right:20px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div style=" margin-top:150px; margin-right:20px;"; class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
   <img class="round" src="{{asset('images/portrait/small/arabicthanks.PNG') }}" alt="avatar" height="250" width="550" />
     
   </div>
-</div>
+</div> -->
 
 </form>
 

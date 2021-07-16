@@ -23,6 +23,8 @@ Route::group([
   Route::post('login', 'AuthController@login')->name('login2');
   Route::post('register', 'AuthController@register')->name('signup');
   Route::post('saveUserInput', 'AuthController@saveSurvey')->name('saveData');
+  Route::post('saveUserInput2', 'AuthController@saveSurvey2')->name('saveData2');
+
 
   Route::group([
     'middleware' => 'auth:api'
