@@ -70,6 +70,9 @@ class AuthController extends Controller
         $FriendTotal=0;
         $OthTotal=0;
 
+        $yesTotal=0;
+        $noTotal=0;
+
         $from = Carbon::parse("2021-1-1")->format("Y-m-d");
        $to = Carbon::parse("2021-2-1")->format("Y-m-d");
 
@@ -80,6 +83,11 @@ class AuthController extends Controller
        $tiktokDayByDay = array();
        $friendDayByDay =  array();
        $otherDayByDay =  array();
+
+       $dates2 = array();
+
+       $yesDayByDay = array();
+       $noDayByDay = array();
        ;
 
 
@@ -88,10 +96,7 @@ class AuthController extends Controller
         $overall_size = $overall_collection->count();
         if($overall_size > 0){
         $latest_date_overall = $overall_sorted_collection->last();
-        // $overall = DB::table('overalls')->latest()->first();
-        // Overall::latest();
-        
-        //  dd($overall_sorted_collection->last());
+  
          $FbTotal=$latest_date_overall->facebook;
          $TikTotal=$latest_date_overall->tiktok;
          $InstTotal=$latest_date_overall->instagram;
@@ -117,13 +122,40 @@ class AuthController extends Controller
        }
 
 
-       
+
+
+       //question2 answers
+
+       $overall_collection2 = Overall2::all();
+       $overall_sorted_collection2 = $overall_collection2->sortBy('date');
+       $overall_size2 = $overall_collection2->count();
+       if($overall_size2 > 0){
+       $latest_date_overall2 = $overall_sorted_collection2->last();
+ 
+       $yesTotal = $latest_date_overall2->yes;
+       $noTotal = $latest_date_overall2->no;
+      }
+      
+
+      $dates2 = $overall_sorted_collection2->pluck('date');
+      $yesDayByDay = $overall_sorted_collection2->pluck('yes');
+      $noDayByDay = $overall_sorted_collection2->pluck('no');
+    
+
+      for($i=$dates2->count()-1 ; $i > 0  ; $i--){
+       $yesDayByDay[$i] = $yesDayByDay[$i] - $yesDayByDay[$i-1];
+       $noDayByDay[$i] = $noDayByDay[$i] - $noDayByDay[$i-1];
+      }
+
+
+
 
 
 
     
     return view('/pages/dash-analysis',compact('FbTotal', 'TikTotal','InstTotal','FriendTotal','OthTotal','dates','facebookDayByDay'
-    ,'instagramDayByDay','tiktokDayByDay','friendDayByDay','otherDayByDay','from','to'));
+    ,'instagramDayByDay','tiktokDayByDay','friendDayByDay','otherDayByDay','from','to','yesTotal','noTotal'
+    ,'dates2' ,'yesDayByDay' , 'noDayByDay' ));
 
     }
 
