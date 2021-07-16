@@ -72,7 +72,7 @@
             <div class="card-content  show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button id="yesBtn" onClick="switchColor('yesBtn','yesBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
+                <button id="yesBtn" onClick="switchColor('yesBtn','yesBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:100%;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
                 <!-- <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/yes.png') }}" alt="avatar" height="65" width="65" /></span> -->
                 <span>לקוח חדש</span></button>
                 </center>
@@ -93,7 +93,7 @@
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
-                <button id="noBtn" onClick="switchColor('noBtn','noBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
+                <button id="noBtn" onClick="switchColor('noBtn','noBtn2')" style="border-width: 0px;    border-radius: 10%; height:216px;width: 100%;   background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
                 <!-- <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/no.png') }}" alt="avatar" height="65" width="65" /></span> -->
                 <span>לקוח ותיק</span>
                 </button>
@@ -187,6 +187,19 @@
 
 function switchColor(btnColor,btnRes){
         
+      var btnYesVal = parseInt(document.getElementById('yesBtn2').value);
+      var btnNoVal = parseInt(document.getElementById('noBtn2').value);
+       if(btnRes == 'noBtn2'){
+        if(btnNoVal == 0 && btnYesVal == 1){
+          switchColor('yesBtn', 'yesBtn2');
+        }
+      }else{
+        if(btnYesVal == 0 && btnNoVal == 1){
+          switchColor('noBtn', 'noBtn2');
+        }
+      }
+
+
       var btnC = document.getElementById(btnColor);
       var btnR = document.getElementById(btnRes);
       var value=btnR.value;
@@ -200,16 +213,15 @@ function switchColor(btnColor,btnRes){
         btnC.style.background = '#f3df81';
         btnR.value='1';
         document.getElementById('subbtn').style.visibility = "visible";
-
+        
 
         }else{
         btnC.style.background = 'white';
         btnR.value='0'; 
 
-      var btnYesVal = parseInt(document.getElementById('yesBtn2').value);
-      var btnNoVal = parseInt(document.getElementById('noBtn2').value);
+      
 
-
+      
 
       if(btnYesVal==1 || btnNoVal==1 ){
         document.getElementById('subbtn').style.visibility = "visible";
@@ -225,7 +237,9 @@ function switchColor(btnColor,btnRes){
 
         }
 
-    
+
+        
+        
 
 
 }
