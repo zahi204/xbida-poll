@@ -67,8 +67,8 @@
 <div class="row" style="padding: 0;margin: 0;";>
   
   
-  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-4 col-xl-4">
-        <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="card" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px;";>
             <div class="card-content  show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
@@ -84,12 +84,12 @@
   
   
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" >
-  <img style="margin-top:-30px;"; class="" src="{{asset('images/portrait/small/askman.png') }}" alt="avatar" height="250" />
+  <img style="margin-top:-30px;display: block; margin-left:auto ; margin-right: auto;"; class="" src="{{asset('images/portrait/small/askman.png') }}" alt="avatar" height="250" />
   </div>
   
   
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" >
-        <div class="card" style="border-width: 0px;border-color: #706f6f;border-style: solid;  border-radius: 10%; height:216px; width:130px;";>
+        <div class="card" style="border-width: 0px;border-color: #706f6f;border-style: solid;  border-radius: 10%; height:216px;";>
             <div class="card-content collapse show" aria-expanded="true">
                 <div class="card-body" style="padding:0rem">
                   <center>
