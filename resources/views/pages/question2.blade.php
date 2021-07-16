@@ -73,7 +73,7 @@
                 <div class="card-body" style="padding:0rem">
                   <center>
                 <button id="yesBtn" onClick="switchColor('yesBtn','yesBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
-                <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/yes.png') }}" alt="avatar" height="65" width="65" /></span>
+                <!-- <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/yes.png') }}" alt="avatar" height="65" width="65" /></span> -->
                 <span>לקוח חדש</span></button>
                 </center>
           </div>
@@ -94,7 +94,7 @@
                 <div class="card-body" style="padding:0rem">
                   <center>
                 <button id="noBtn" onClick="switchColor('noBtn','noBtn2')" style="border-width: 0px; border-color: #706f6f; border-style: solid;  border-radius: 10%; height:216px; width:130px;  background-color:white; font-size:2.5rem;font-family: 'Cairo', sans-serif; "; class="btn  btn-inline">
-                <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/no.png') }}" alt="avatar" height="65" width="65" /></span>
+                <!-- <span><img style="margin-top:30px;"; class="round" src="{{asset('images/portrait/small/no.png') }}" alt="avatar" height="65" width="65" /></span> -->
                 <span>לקוח ותיק</span>
                 </button>
                 </center>
