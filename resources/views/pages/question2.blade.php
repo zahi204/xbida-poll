@@ -220,7 +220,8 @@ function switchColor(btnColor,btnRes){
         btnR.value='0'; 
 
       
-
+      btnYesVal = parseInt(document.getElementById('yesBtn2').value);
+      btnNoVal = parseInt(document.getElementById('noBtn2').value);
       
 
       if(btnYesVal==1 || btnNoVal==1 ){
