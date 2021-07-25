@@ -124,7 +124,7 @@
               </div>
             </div>
             <h2 class="text-bold-700">{{$FriendTotal}}</h2>
-            <p class="mb-0 line-ellipsis">דרך חבר</p>
+            <p class="mb-0 line-ellipsis">Friend</p>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
               </div>
             </div>
             <h2 class="text-bold-700">{{$OthTotal}}</h2>
-            <p class="mb-0 line-ellipsis">אחר</p>
+            <p class="mb-0 line-ellipsis">Other</p>
           </div>
         </div>
       </div>
@@ -156,7 +156,7 @@
               </div>
             </div>
             <h2 class="text-bold-700">{{$OthTotal + $InstTotal + $TikTotal + $FbTotal}}</h2>
-            <p class="mb-0 line-ellipsis">סך הכך</p>
+            <p class="mb-0 line-ellipsis">Total</p>
           </div>
         </div>
       </div>
@@ -268,22 +268,81 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-lg-8 col-12">
-      <div id="text1">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between align-items-end ">
-            <h4 class="card-title ">Number of New/Old customers per day</h4>
+      <div class="row">
+          <div class="col-xl-4 col-md-4 col-sm-6">
+            <div class="card text-center">
+              <div class="card-content">
+                <div class="card-body">
+                  <!-- <div class="avatar bg-rgba-info  m-0 mb-1"> -->
+                    <!-- <div class="avatar-content">
+                      <img class="" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="30" width="30" />
+                    </div> -->
+                  <!-- </div> -->
+                  <h2 class="text-bold-700" style="color: rgb(115, 103, 240);">{{$yesTotal}}</h2>
+                  <p class="mb-0 line-ellipsis" style="color: rgb(115, 103, 240);">New Customers</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-content">
 
-            <div class="card-body pb-0">
+          <div class="col-xl-4 col-md-4 col-sm-6">
+            <div class="card text-center">
+              <div class="card-content">
+                <div class="card-body">
+                  <!-- <div class="avatar bg-rgba-info  m-0 mb-1"> -->
+                    <!-- <div class="avatar-content">
+                      <img class="" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="30" width="30" />
+                    </div> -->
+                  <!-- </div> -->
+                  <h2 class="text-bold-700" style="color: rgb(235, 84, 85);">{{$noTotal}}</h2>
+                  <p class="mb-0 line-ellipsis" style="color: rgb(235, 84, 85);">Old Customers</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              <div class="d-flex justify-content-start"></div>
 
-              <div id="revenue-chart-yesno" style="overflow: auto;"></div>
+          <div class="col-xl-4 col-md-4 col-sm-6">
+            <div class="card text-center">
+              <div class="card-content">
+                <div class="card-body">
+                  <!-- <div class="avatar bg-rgba-info  m-0 mb-1"> -->
+                    <!-- <div class="avatar-content">
+                      <img class="" src="{{asset('images/portrait/small/fb.png') }}" alt="avatar" height="30" width="30" />
+                    </div> -->
+                  <!-- </div> -->
+                  <h2 class="text-bold-700">{{$yesTotal + $noTotal}}</h2>
+                  <p class="mb-0 line-ellipsis">Total Customers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12 col-12">
+        <div id="text1">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-end ">
+              <h4 class="card-title ">Number of New/Old customers per day</h4>
+            </div>
+            <div class="card-content">
+
+              <div class="card-body pb-0">
+
+                <div class="d-flex justify-content-start"></div>
+
+                <div id="revenue-chart-yesno" style="overflow: auto;"></div>
+              </div>
             </div>
           </div>
         </div>
+        </div>
+        
       </div>
+      
     </div>
     <div class="col-xs-12 col-sm-12 col-lg-4 col-12">
       <div class="card">
@@ -296,6 +355,8 @@
       </div>
     </div>
   </div><!-- end of row 4 -->
+
+
 
 
 </div>
@@ -992,6 +1053,84 @@
     var donutChart2 = new ApexCharts(donutChartEl2, donutChartConfig2);
     donutChart2.render();
   }
+
+
+
+
+
+
+  var options = {
+  chart: {
+    height: 350,
+    type: "line",
+    stacked: false
+  },
+  dataLabels: {
+    enabled: false
+  },
+  colors: ['#99C2A2', '#C5EDAC', '#66C7F4'],
+  series: [
+    
+    {
+      name: 'New Customers',
+      type: 'column',
+      data: yesDayByDay
+    },
+    {
+      name: "Old Customers",
+      type: 'column',
+      data: noDayByDay
+    },
+    
+  ],
+  stroke: {
+    width: [4, 4]
+  },
+  plotOptions: {
+    bar: {
+      columnWidth: "40%"
+    }
+  },
+  xaxis: {
+    categories: dates2
+  },
+  yaxis: [
+    {
+      seriesName: 'Column A',
+      axisTicks: {
+        show: true
+      },
+      axisBorder: {
+        show: true,
+      },
+      title: {
+        text: "Columns"
+      }
+    },
+    {
+      seriesName: 'Column A',
+      show: false
+    }
+  ],
+  tooltip: {
+    shared: false,
+    intersect: true,
+    x: {
+      show: false
+    }
+  },
+  legend: {
+    horizontalAlign: "left",
+    offsetX: 40
+  }
+};
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+chart.render();
+
+
+
 
 
 

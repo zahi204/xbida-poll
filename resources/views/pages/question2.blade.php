@@ -44,7 +44,7 @@
 
 
 <img class="round" src="{{asset('images/portrait/small/logomet2.PNG') }}" alt="avatar" height="80"  />
-<h2 style="font-size:3rem;text-align: center;";>אנא סמן את הבחירה הנכונה</h2>
+<h2 style="font-size:3rem;text-align: center;";>תודה שקנית אצלנו <br> אנא סמן את הבחירה הנכונה</h2>
 
 
    
@@ -135,7 +135,7 @@
 
   <center>
 <!-- Button trigger modal -->
-<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn "  data-toggle="modal" data-target="#exampleModal" >
+<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn " >
 <img class="" src="{{asset('images/portrait/small/send.PNG') }}" alt="avatar" height="60" width="123" />
 </button>
 </center>
