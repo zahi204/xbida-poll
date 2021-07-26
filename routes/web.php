@@ -22,12 +22,12 @@ Route::get('/all-as-csv', function(){
     $table = Overall::all();
     $filename = "poll.csv";
     $handle = fopen($filename, 'w+');
-    fputcsv($handle, array('date', 'facebook', 'instagram', 'tiktok',
+    fputcsv($handle, array('date', 'facebook', 'instagram', 'tiktok','friend',
         'other'));
 
     foreach($table as $row) {
         fputcsv($handle, array($row['date'], $row['facebook'], $row['instagram']
-        , $row['tiktok'] , $row['other']));
+        , $row['tiktok'] ,$row['friend'], $row['other']));
     }
 
     fclose($handle);
