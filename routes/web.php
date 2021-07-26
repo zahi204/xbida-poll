@@ -41,7 +41,7 @@ Route::get('/all-as-csv', function(){
     fputcsv($handle, array('created_at', 'facebook', 'instagram', 'tiktok','friend',
     'other'));
 
-    foreach($table as $row) {
+    foreach($table2 as $row) {
         fputcsv($handle, array($row['created_at'], $row['facebook'], $row['instagram']
         , $row['tiktok'] ,$row['friend'], $row['other']));
     }
