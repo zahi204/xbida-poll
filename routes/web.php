@@ -16,6 +16,7 @@
 //Route::get('/', 'DashboardController@dashboardAnalytics');
 
 use App\Overall;
+use App\Survey;
 
 Route::get('/all-as-csv', function(){
 
@@ -29,6 +30,23 @@ Route::get('/all-as-csv', function(){
         fputcsv($handle, array($row['date'], $row['facebook'], $row['instagram']
         , $row['tiktok'] ,$row['friend'], $row['other']));
     }
+
+
+    $table2 = Survey::all();
+    for($i = 0 ;$i < 10 ; $i++){
+        fputcsv($handle, array('', '', '', '','',
+        ''));
+    }
+   
+    fputcsv($handle, array('created_at', 'facebook', 'instagram', 'tiktok','friend',
+    'other'));
+
+    foreach($table as $row) {
+        fputcsv($handle, array($row['created_at'], $row['facebook'], $row['instagram']
+        , $row['tiktok'] ,$row['friend'], $row['other']));
+    }
+
+
 
     fclose($handle);
 
