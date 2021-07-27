@@ -124,7 +124,7 @@ class AuthController extends Controller
         $otherDayByDay[$i] = $otherDayByDay[$i] - $otherDayByDay[$i-1];
        }
 
-
+    //    dd($friendDayByDay);
 
 
        //question2 answers
@@ -256,7 +256,7 @@ class AuthController extends Controller
             'other' => $request->oth
 
         ]);
-
+        // dd($survey);
         $survey->save();
 
 
@@ -368,6 +368,7 @@ class AuthController extends Controller
                 'friend' => intval($new_overall[0]->friend),
                 'other' => intval($new_overall[0]->oth)
             ]);
+
 
             $overall->save();
 
@@ -489,7 +490,7 @@ class AuthController extends Controller
 
         while(Carbon::parse($it_date)->diffInDays(Carbon::parse($current_date)) != 0 ){
             $current_date_row = DB::table('overalls')->where('date', $it_date)->first();
-            if($current_date_row == null){
+            // if($current_date_row == null){
                 $new_overall = DB::table('surveys')
                 ->selectRaw('
                     SUM(facebook) AS fb,
@@ -513,7 +514,7 @@ class AuthController extends Controller
                 ]);
     
                 $overall->save();
-            }
+            // }
             
 
 
