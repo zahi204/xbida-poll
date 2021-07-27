@@ -187,7 +187,7 @@
 <input Hidden name="fb" type="text" class="form-control" id="fbBtn2"  value='0' placeholder=""  >
 <input Hidden name="ig" type="text" class="form-control" id="IgBtn2"  value='0' placeholder="" >
 <input Hidden name="tik" type="text" class="form-control" id="TikBtn2"  value='0' placeholder="" >
-<input Hidden name="friend" type="text" class="form-control" id="friendBtn2"  value='0'placeholder="" >
+<input Hidden name="friend" type="text" class="form-control" id="friendBtn2"  value='0' placeholder="" >
 <input Hidden name="oth" type="text" class="form-control" id="OthBtn2"  value='0'placeholder="" >
 <input Hidden name="company_id" type="text" class="form-control" id=""  value="<?php echo $company_id; ?>" placeholder="" >
 <input Hidden name="branch_id" type="text" class="form-control" id=""  value='<?php echo $branch_id; ?>' placeholder="" >
