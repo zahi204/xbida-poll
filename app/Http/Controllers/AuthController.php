@@ -490,7 +490,7 @@ class AuthController extends Controller
 
         while(Carbon::parse($it_date)->diffInDays(Carbon::parse($current_date)) != 0 ){
             $current_date_row = DB::table('overalls')->where('date', $it_date)->first();
-            if($current_date_row == null){
+            // if($current_date_row == null){
                 $new_overall = DB::table('surveys')
                 ->selectRaw('
                     SUM(facebook) AS fb,
@@ -514,7 +514,7 @@ class AuthController extends Controller
                 ]);
     
                 $overall->save();
-            }
+            // }
             
 
 
