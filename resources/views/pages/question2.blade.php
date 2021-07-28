@@ -135,7 +135,8 @@
 
   <center>
 <!-- Button trigger modal -->
-<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" onClick="submitForm()" type="button" class="   btn " >
+<button  style="visibility: hidden; margin-top:-25px;"; id="subbtn" type="submit" class="   btn " 
+form="myForm">
 <img class="" src="{{asset('images/portrait/small/send.PNG') }}" alt="avatar" height="60" width="123" />
 </button>
 </center>
@@ -249,13 +250,13 @@ function getResult(){
         console.log(btnColors);
 }
 
-function submitForm(){
+// function submitForm(){
 
-  setTimeout(() => { document.getElementById("myForm").submit();
- }, 2000);
+//   setTimeout(() => { document.getElementById("myForm").submit();
+//  }, 2000);
 
 
-}
+// }
 
 
 
