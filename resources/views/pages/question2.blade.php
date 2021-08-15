@@ -11,6 +11,29 @@
 
 <style>
 
+#screensaver { 
+  position: absolute; 
+  width: 100%; 
+  height:100%; 
+  left:0px; 
+  top: 0px; 
+  display: none; 
+  z-index:9999; 
+  background-color: black;
+}
+div.a {
+  width: 50px;
+  height:50px;
+  position:fixed;
+    
+}
+
+div.b {
+  width: 50px;
+  height:50px;
+  position:fixed;
+    
+}
 
 
 
@@ -38,7 +61,14 @@
   @endsection
 
   @section('content')
-    {{-- Dashboard Analytics Start --}}
+    <div id="screensaver">
+      <div class='a'>
+        <img height="100px" src="{{asset('images/portrait/small/screensaver-logo2.PNG') }}">
+      </div>
+      <div class='b'>
+        <img height="100px" src="{{asset('images/portrait/small/screensaver-logo.png') }}" >
+      </div>
+    </div>
     
 <center>
 
@@ -169,16 +199,87 @@ form="myForm">
 </center>
   @endsection
 
-  <script>
 
-(function () {
- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+<script>
+
+var mousetimeout;
+var screensaver_active = false;
+var idletime = 5;
+
+function show_screensaver(){
+    $('#screensaver').fadeIn();
+    screensaver_active = true;
+    screensaver_animation();
+}
+
+function stop_screensaver(){
+    $('#screensaver').fadeOut();
+    screensaver_active = false;
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.round(Math.random() * 15)];
+    }
+    return color;
+}
+
+$(document).mousemove(function(){
+    clearTimeout(mousetimeout);
+	
+    if (screensaver_active) {
+        stop_screensaver();
+    }
+
+    mousetimeout = setTimeout(function(){
+        show_screensaver();
+    }, 1000 * idletime); // 5 secs			
+});
+
+function screensaver_animation(){
+    if (screensaver_active) {
+        $('#screensaver').animate(
+            {backgroundColor: getRandomColor()},
+            400,
+            screensaver_animation);
+    }
+}
 
 
- 
 
 
-}());
+$(document).ready(function(){
+    animateDiv('.a');
+    animateDiv('.b');
+
+});
+
+function makeNewPosition(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+function animateDiv(myclass){
+    var newq = makeNewPosition();
+    $(myclass).animate({ top: newq[0], left: newq[1] }, 3000,   function(){
+      animateDiv(myclass);        
+    });
+    
+};
 
 
 
