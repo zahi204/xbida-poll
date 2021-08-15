@@ -59,7 +59,6 @@ div.b {
   @endsection
 
   @section('content')
-    {{-- Dashboard Analytics Start --}}
     <div id="screensaver">
       <div class='a'>
         <img height="100px" src="{{asset('images/portrait/small/screensaver-logo2.PNG') }}">
@@ -248,7 +247,7 @@ div.b {
 
 var mousetimeout;
 var screensaver_active = false;
-var idletime = 5;
+var idletime = 60;
 
 function show_screensaver(){
     $('#screensaver').fadeIn();

@@ -208,7 +208,7 @@ form="myForm">
 
 var mousetimeout;
 var screensaver_active = false;
-var idletime = 5;
+var idletime = 60;
 
 function show_screensaver(){
     $('#screensaver').fadeIn();
